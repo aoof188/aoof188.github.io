@@ -8,18 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>阿里云ECS-Centos7 部署pptp vpn | 志建</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言： ​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。 ​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使用">
+  <meta name="description" content="前言： ​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。 ​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使">
 <meta name="keywords" content="技术,博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="阿里云ECS-Centos7 部署pptp vpn">
 <meta property="og:url" content="http://yoursite.com/2018/04/19/test/index.html">
 <meta property="og:site_name" content="志建">
-<meta property="og:description" content="前言： ​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。 ​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使用">
+<meta property="og:description" content="前言： ​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。 ​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-19T06:42:12.095Z">
+<meta property="og:image" content="http://image.aoof188.cn/th.jpg">
+<meta property="og:updated_time" content="2018-04-19T08:06:05.780Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阿里云ECS-Centos7 部署pptp vpn">
-<meta name="twitter:description" content="前言： ​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。 ​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使用">
+<meta name="twitter:description" content="前言： ​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。 ​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使">
+<meta name="twitter:image" content="http://image.aoof188.cn/th.jpg">
   
     <link rel="alternative" href="/atom.xml" title="志建" type="application/atom+xml">
   
@@ -177,7 +179,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前言：</p>
+        <p><img src="http://image.aoof188.cn/th.jpg" alt=""></p>
+<p>前言：</p>
 <p>​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。</p>
 <p>​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使用哪种，看个人喜好了，没必要去关注哪个牛逼。</p>
 <h1 id="部署PPTP"><a href="#部署PPTP" class="headerlink" title="部署PPTP"></a>部署PPTP</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# uname -r</span><br><span class="line">3.10.0-327.el7.x86_64</span><br><span class="line">[root@master ~]# cat /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.2.1511 (Core)</span><br></pre></td></tr></table></figure>
