@@ -8,13 +8,26 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>志建</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="#hexo结合github搭建博客  toc: truetitle: hexo结合github搭建博客date: 2018-04-25 16:03:46tags: - 技术 - 博客   作为一个运维需要有一个自己的博客。哈哈哈 准备：  域名  一台主机（linux、mac、windows都可以）安装好nodejs、git  github账号  我本次搭建的hexo使用的主题是“yilia”个人">
+<meta property="og:type" content="article">
 <meta property="og:title" content="志建">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/04/25/hexo+github搭建博客/index.html">
 <meta property="og:site_name" content="志建">
+<meta property="og:description" content="#hexo结合github搭建博客  toc: truetitle: hexo结合github搭建博客date: 2018-04-25 16:03:46tags: - 技术 - 博客   作为一个运维需要有一个自己的博客。哈哈哈 准备：  域名  一台主机（linux、mac、windows都可以）安装好nodejs、git  github账号  我本次搭建的hexo使用的主题是“yilia”个人">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://image.aoof188.cn/blog/180425/gJe427kdm6.png?imageslim">
+<meta property="og:image" content="http://image.aoof188.cn/blog/180425/9kI4LGjGa3.png?imageslim">
+<meta property="og:image" content="http://image.aoof188.cn/blog/180425/A5lFf8e56b.png?imageslim">
+<meta property="og:image" content="http://image.aoof188.cn/blog/180425/gBF1Ll094G.png?imageslim">
+<meta property="og:image" content="http://image.aoof188.cn/blog/180425/2E27ADg5Lk.png?imageslim">
+<meta property="og:image" content="http://image.aoof188.cn/blog/180425/0gCkcJ93CH.png?imageslim">
+<meta property="og:image" content="http://image.aoof188.cn/blog/180425/g1hdgammg2.png?imageslim">
+<meta property="og:image" content="http://image.aoof188.cn/blog/180425/L3JdaeGLh3.png?imageslim">
+<meta property="og:updated_time" content="2018-04-25T08:07:12.950Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="志建">
+<meta name="twitter:description" content="#hexo结合github搭建博客  toc: truetitle: hexo结合github搭建博客date: 2018-04-25 16:03:46tags: - 技术 - 博客   作为一个运维需要有一个自己的博客。哈哈哈 准备：  域名  一台主机（linux、mac、windows都可以）安装好nodejs、git  github账号  我本次搭建的hexo使用的主题是“yilia”个人">
+<meta name="twitter:image" content="http://image.aoof188.cn/blog/180425/gJe427kdm6.png?imageslim">
   
     <link rel="alternative" href="/atom.xml" title="志建" type="application/atom+xml">
   
@@ -152,9 +165,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-hexo+github搭建博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-hexo+github搭建博客" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
 <!-- 目录内容 -->
@@ -182,11 +193,56 @@
 <li><p>我本次搭建的hexo使用的主题是“yilia”个人觉得这个主机简洁很好看，感谢每一位开源贡献的人，因为你们世界将变得更美好。评论使用“畅言”。</p>
 </li>
 </ul>
-        
-          <a class="article-more-a" href="/2018/04/25/hexo+github搭建博客/#more">more >></a>
-        
+<a id="more"></a>
+<h2 id="github"><a href="#github" class="headerlink" title="github"></a>github</h2><p>注册github账号新建一个repository,命名为 “账号名.github.io”</p>
+<p><img src="http://image.aoof188.cn/blog/180425/9kI4LGjGa3.png?imageslim" alt="mark"></p>
+<p><img src="http://image.aoof188.cn/blog/180425/A5lFf8e56b.png?imageslim" alt="mark"></p>
+<p>设置密钥，头像下拉Settiings<br><img src="http://image.aoof188.cn/blog/180425/gBF1Ll094G.png?imageslim" alt="mark"></p>
+<p>将ssh的key复制上去，具体怎么生成网上大把资料。</p>
+<p>配置好以后在本地做检查跟设置操作如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">检查：</span></span><br><span class="line"></span><br><span class="line">[root@VM_0_3_centos ~]# ssh -T git@github.com</span><br><span class="line">Hi aoof188! You've successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line"><span class="meta">#</span><span class="bash">配置git个人信息：</span></span><br><span class="line"></span><br><span class="line">[root@VM_0_3_centos ~]# git config --global user.name "aoof188"</span><br><span class="line"></span><br><span class="line">[root@VM_0_3_centos ~]# git config --global user.email "aoof188@outlook.com"</span><br></pre></td></tr></table></figure>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>我这里使用的是linux服务器安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_3_centos ~]# hexo init Hexo</span><br><span class="line">[root@VM_0_3_centos ~]# cd Hexo</span><br><span class="line">[root@VM_0_3_centos Hexo]# npm install</span><br><span class="line">[root@VM_0_3_centos Hexo]# hexo generate</span><br><span class="line">[root@VM_0_3_centos Hexo]# npm install –-save hexo-deployer-git</span><br><span class="line">[root@VM_0_3_centos Hexo]# git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br><span class="line">[root@VM_0_3_centos Hexo]# vim _config.yml #更改以下配置</span><br><span class="line"><span class="meta">#</span><span class="bash"> Site</span></span><br><span class="line">title: 志建</span><br><span class="line">subtitle: 志建博客</span><br><span class="line">description:</span><br><span class="line">keywords:</span><br><span class="line">author: 志建</span><br><span class="line">language:</span><br><span class="line">timezone:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Extensions</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Plugins: https://hexo.io/plugins/</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Themes: https://hexo.io/themes/</span></span></span><br><span class="line">theme: yilia	#更改主题</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Deployment		<span class="comment">#配置部署</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Docs: https://hexo.io/docs/deployment.html</span></span></span><br><span class="line">deploy:	</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:aoof188/aoof188.github.io.git </span><br><span class="line">branch: master</span><br><span class="line"></span><br><span class="line">[root@VM_0_3_centos Hexo]# hexo clean </span><br><span class="line">[root@VM_0_3_centos Hexo]# hexo generate</span><br><span class="line">[root@VM_0_3_centos Hexo]# hexo deploye</span><br></pre></td></tr></table></figure>
+<p>设置github pages<br><img src="http://image.aoof188.cn/blog/180425/2E27ADg5Lk.png?imageslim" alt="mark"></p>
+<p>部署完成以后直接在浏览器中输入<a href="https://aoof188.github.io/" target="_blank" rel="noopener">https://aoof188.github.io/</a> (注意用户名要改为你自己的用户名)</p>
+<p>##绑定个人域名</p>
+<p>在腾讯云购买一个域名，并且备案号域名，在我大天朝不备案可千万不要使用，你懂得。</p>
+<p><img src="http://image.aoof188.cn/blog/180425/0gCkcJ93CH.png?imageslim" alt="mark"></p>
+<p>添加解析，将域名用CNAME格式解析到aoof188.github.io<br><img src="http://image.aoof188.cn/blog/180425/g1hdgammg2.png?imageslim" alt="mark"></p>
+<p>在source目录下添加个CNAME文件<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_3_centos Hexo]# cd source</span><br><span class="line">[root@VM_0_3_centos source]# cat CNAME</span><br><span class="line">blog.aoof188.cn</span><br><span class="line">[root@VM_0_3_centos source]# cd ../</span><br><span class="line">[root@VM_0_3_centos Hexo]# hexo g</span><br><span class="line">[root@VM_0_3_centos Hexo]# hexo d</span><br></pre></td></tr></table></figure></p>
+<p>发布完成以后等待5分钟然后在浏览器输入<a href="http://blog.aoof188.cn/" target="_blank" rel="noopener">http://blog.aoof188.cn/</a></p>
+<p>成功，完美。。。</p>
+<p>继续往下做，增加评论。</p>
+<p>注册好畅言，设置好几本设置，记得要备案好域名才能使用畅言。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_3_centos Hexo]# vim themes/yilia/layout/_partial/article.ejs</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#########将自带的disqus评论修改为畅言#############</span></span></span><br><span class="line"></span><br><span class="line"> &lt;% if (theme.disqus || config.disqus_shortname)&#123; %&gt;</span><br><span class="line">    &lt;section id="comments"&gt;</span><br><span class="line">      &lt;div id="disqus_thread"&gt;&lt;/div&gt;</span><br><span class="line">        &lt;script type="text/javascript"&gt;</span><br><span class="line">        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */</span><br><span class="line">        var disqus_shortname = '&lt;%= theme.disqus || config.disqus_shortname %&gt;'; // required: replace example with your forum shortname</span><br><span class="line"></span><br><span class="line">        /* * * DON'T EDIT BELOW THIS LINE * * */</span><br><span class="line">        (function() &#123;</span><br><span class="line">          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;</span><br><span class="line">          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';</span><br><span class="line">          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);</span><br><span class="line">        &#125;)();</span><br><span class="line">      &lt;/script&gt;</span><br><span class="line">      &lt;noscript&gt;Please enable JavaScript to view the &lt;a href="https://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">######修改为如下代码##########</span></span></span><br><span class="line"></span><br><span class="line">  &lt;% if (theme.disqus || config.disqus_shortname)&#123; %&gt;</span><br><span class="line">    &lt;section id="comments"&gt;</span><br><span class="line">    &lt;!--PC和WAP自适应版--&gt;</span><br><span class="line">    &lt;div id="SOHUCS" sid="&lt;%=title %&gt;" style="padding: 0px 30px 0px 46px;" &gt;&lt;/div&gt;</span><br><span class="line">    &lt;script type="text/javascript"&gt;</span><br><span class="line">      (function()&#123;</span><br><span class="line">      var appid = '你的APP ID';</span><br><span class="line">      var conf = '你的APP KEY';</span><br><span class="line">      var width = window.innerWidth || document.documentElement.clientWidth;</span><br><span class="line">      if (width &lt; 960) &#123;</span><br><span class="line">      window.document.write('&lt;script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&amp;conf=' + conf + '"&gt;&lt;\/script&gt;'); &#125; else &#123; var loadJs=function(d,a)&#123;var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function")&#123;if(window.attachEvent)&#123;b.onreadystatechange=function()&#123;var e=b.readyState;if(e==="loaded"||e==="complete")&#123;b.onreadystatechange=null;a()&#125;&#125;&#125;else&#123;b.onload=a&#125;&#125;c.appendChild(b)&#125;;loadJs("https://changyan.sohu.com/upload/changyan.js",function()&#123;window.changyan.api.config(&#123;appid:appid,conf:conf&#125;)&#125;); &#125; &#125;)();</span><br><span class="line">      &lt;/script&gt;</span><br><span class="line">      &lt;noscript&gt;Please enable JavaScript to view the &lt;a href="https://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+<p>这里需要<strong>注意</strong>一点的是：<code>sid=&quot;&lt;%=title %&gt;&quot;&gt;</code> 这样畅言就可以直接根据对应的文章来识别，使得文章有对应的评论，不会都乱在一起。</p>
+<p>文章实现目录：<a href="http://www.54tianzhisheng.cn/2017/06/13/Hexo-yilia-toc/" target="_blank" rel="noopener">http://www.54tianzhisheng.cn/2017/06/13/Hexo-yilia-toc/</a></p>
+<p>实现效果如下</p>
+<p><img src="http://image.aoof188.cn/blog/180425/L3JdaeGLh3.png?imageslim" alt="mark"></p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -195,16 +251,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/25/hexo+github搭建博客/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/25/hexo+github搭建博客/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/23/SecureCRT创建密钥ssh登录/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SecureCRT创建密钥ssh登录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -224,344 +339,24 @@
 
 
 
-
   
-    <article id="post-SecureCRT创建密钥ssh登录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/23/SecureCRT创建密钥ssh登录/">SecureCRT创建密钥ssh登录</a>
-    </h1>
   
 
-        
-        <a href="/2018/04/23/SecureCRT创建密钥ssh登录/" class="archive-article-date">
-  	<time datetime="2018-04-23T05:30:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://image.aoof188.cn/18-4-23/5921460.jpg" alt=""></p>
-<p>#SecureCRT创建密钥SSH登录#<br>
-        
-          <a class="article-more-a" href="/2018/04/23/SecureCRT创建密钥ssh登录/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/23/SecureCRT创建密钥ssh登录/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/20/hello-world/">Hello World</a>
-    </h1>
+  <div id="SOHUCS" sid="hexo+github搭建博客" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytzJtAsj",
+        conf: "prod_0669f23104fa000da505958568d50680"
+    });
+</script>
+</script>
   
 
-        
-        <a href="/2018/04/20/hello-world/" class="archive-article-date">
-  	<time datetime="2018-04-20T09:30:29.901Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-20</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://image.aoof188.cn/18-4-20/17764935.jpg" alt=""><br>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2>
-        
-          <a class="article-more-a" href="/2018/04/20/hello-world/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/20/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-posttitle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/19/posttitle/">posttitle</a>
-    </h1>
   
 
-        
-        <a href="/2018/04/19/posttitle/" class="archive-article-date">
-  	<time datetime="2018-04-19T06:24:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://image.aoof188.cn/18-4-20/52444405.jpg" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/19/posttitle/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-test" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/19/test/">阿里云ECS-Centos7 部署pptp vpn</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/19/test/" class="archive-article-date">
-  	<time datetime="2018-04-19T05:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://image.aoof188.cn/th.jpg" alt=""></p>
-<p>前言：</p>
-<p>​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。</p>
-<p>​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使用哪种，看个人喜好了，没必要去关注哪个牛逼。</p>
-<h1 id="部署PPTP"><a href="#部署PPTP" class="headerlink" title="部署PPTP"></a>部署PPTP</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# uname -r</span><br><span class="line">3.10.0-327.el7.x86_64</span><br><span class="line">[root@master ~]# cat /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.2.1511 (Core)</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/04/19/test/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/19/test/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -584,8 +379,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
