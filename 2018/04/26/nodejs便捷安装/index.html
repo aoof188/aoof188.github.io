@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | 志建</title>
+  <title>centos便捷安装nodejs | 志建</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="志建">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+  <meta name="description" content="Enterprise Linux和Fedora包括RedHat®EnterpriseLinux® / RHEL，CentOS和Fedora。 Node.js可以从NodeSource Enterprise Linux和Fedora二进制发行版库获得。可以在GitHub的nodesource / distributions上找到对此存储库及其脚本的支持。 请注意，EL 5的Node.js包（RHEL">
+<meta name="keywords" content="技术,博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos便捷安装nodejs">
+<meta property="og:url" content="http://yoursite.com/2018/04/26/nodejs便捷安装/index.html">
 <meta property="og:site_name" content="志建">
+<meta property="og:description" content="Enterprise Linux和Fedora包括RedHat®EnterpriseLinux® / RHEL，CentOS和Fedora。 Node.js可以从NodeSource Enterprise Linux和Fedora二进制发行版库获得。可以在GitHub的nodesource / distributions上找到对此存储库及其脚本的支持。 请注意，EL 5的Node.js包（RHEL">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-26T09:05:35.764Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="志建">
+<meta name="twitter:title" content="centos便捷安装nodejs">
+<meta name="twitter:description" content="Enterprise Linux和Fedora包括RedHat®EnterpriseLinux® / RHEL，CentOS和Fedora。 Node.js可以从NodeSource Enterprise Linux和Fedora二进制发行版库获得。可以在GitHub的nodesource / distributions上找到对此存储库及其脚本的支持。 请注意，EL 5的Node.js包（RHEL">
   
     <link rel="alternative" href="/atom.xml" title="志建" type="application/atom+xml">
   
@@ -160,36 +165,113 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-nodejs便捷安装" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      centos便捷安装nodejs
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/26/nodejs便捷安装/" class="archive-article-date">
+
+        
+        <a href="/2018/04/26/nodejs便捷安装/" class="archive-article-date">
   	<time datetime="2018-04-26T09:03:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-26</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/26/nodejs便捷安装/">centos便捷安装nodejs</a>
-    </h1>
-  
+        
+      </header>
+    
+<!-- 目录内容 -->
 
-        <div class="article-info info-on-right">
-          
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      
+<!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Enterprise Linux和Fedora</strong><br><strong>包括RedHat®EnterpriseLinux® / RHEL，CentOS和Fedora。</strong></p>
+<p>Node.js可以从NodeSource Enterprise Linux和Fedora二进制发行版库获得。可以在GitHub的nodesource / distributions上找到对此存储库及其脚本的支持。</p>
+<p>请注意，EL 5的Node.js包（RHEL5和CentOS 5）取决于EPEL存储库的可用性。如果未安装，安装脚本将检查并提供说明。</p>
+<p>在RHEL，CentOS或Fedora上，用于Node.js v8 LTS：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -</span><br></pre></td></tr></table></figure>
+<p>另外对于Node.js 9：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --silent --location https://rpm.nodesource.com/setup_9.x | sudo bash -</span><br></pre></td></tr></table></figure>
+<p>然后安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum -y install nodejs</span><br></pre></td></tr></table></figure>
+<p>可选：安装构建工具</p>
+<p>要从npm编译和安装原生插件，您可能还需要安装构建工具：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install gcc-c++ make</span><br><span class="line"><span class="meta">#</span> or: sudo yum groupinstall 'Development Tools'</span><br></pre></td></tr></table></figure>
+<p>可用的体系结构：</p>
+<p><u><em>i386（32位，不适用于EL7）</em></u><br><u><em>x86_64（64位）</em></u><br><u><em>支持的RedHat®EnterpriseLinux®版本：</em></u></p>
+<p><u><em>RHEL 5（32位和64位）</em></u><br><u><em>RHEL 6（32位和64位）</em></u><br><u><em>RHEL 7（64位）</em></u><br><u><em>支持的CentOS版本：</em></u></p>
+<p><u><em>CentOS 5（32位和64位）</em></u><br><u><em>CentOS 6（32位和64位）</em></u><br><u><em>CentOS 7（64位）</em></u><br><u><em>支持的CloudLinux版本：</em></u></p>
+<p><u><em>CloudLinux 6（32位和64位）</em></u><br><u><em>支持的Fedora版本：</em></u></p>
+<p><u><em>Fedora 21（二十一）（32位和64位）</em></u><br><u><em>Fedora 20（Heisenbug）（32位和64位）</em></u><br><u><em>Fedora 19（Schrödinger’s Cat）（32位和64位）</em></u><br><u><em>已知支持的其他发行版本：</em></u></p>
+<p><u><em>Oracle Linux（非常密切地反映RHEL）</em></u><br><u><em>亚马逊Linux（2016.03测试）</em></u></p>
+<p>摘自：<a href="https://nodejs.org/en/download/package-manager/#enterprise-linux-and-fedora" target="_blank" rel="noopener">https://nodejs.org/en/download/package-manager/#enterprise-linux-and-fedora</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>祝老板晚上约炮成功<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://image.aoof188.cn/blog/180426/m5lf1l8bfj.png?imageslim">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://image.aoof188.cn/blog/180426/aid0K9db2A.png?imageslim">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -205,183 +287,129 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/26/nodejs便捷安装/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/25/hexo+github搭建博客/" class="archive-article-date">
-  	<time datetime="2018-04-25T08:03:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-25</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/25/hexo+github搭建博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hexo结合github搭建博客</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/25/hexo+github搭建博客/">hexo结合github搭建博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/23/SecureCRT创建密钥ssh登录/" class="archive-article-date">
-  	<time datetime="2018-04-23T05:30:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/23/SecureCRT创建密钥ssh登录/">SecureCRT创建密钥ssh登录</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/19/posttitle/" class="archive-article-date">
-  	<time datetime="2018-04-19T06:24:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/posttitle/">posttitle</a>
-    </h1>
+  <div id="SOHUCS" sid="nodejs便捷安装" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytzJtAsj",
+        conf: "prod_0669f23104fa000da505958568d50680"
+    });
+</script>
+</script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/19/test/" class="archive-article-date">
-  	<time datetime="2018-04-19T05:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/test/">阿里云ECS-Centos7 部署pptp vpn</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -404,8 +432,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
