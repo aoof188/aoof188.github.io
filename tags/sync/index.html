@@ -6,22 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>阿里云ECS-Centos7 部署pptp vpn | 志建</title>
+  <title>Tag: sync | 志建</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言： ​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。 ​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使">
-<meta name="keywords" content="技术,博客">
-<meta property="og:type" content="article">
-<meta property="og:title" content="阿里云ECS-Centos7 部署pptp vpn">
-<meta property="og:url" content="http://yoursite.com/2018/04/19/test/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="志建">
+<meta property="og:url" content="http://yoursite.com/tags/sync/index.html">
 <meta property="og:site_name" content="志建">
-<meta property="og:description" content="前言： ​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。 ​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://image.aoof188.cn/th.jpg">
-<meta property="og:updated_time" content="2018-04-25T07:16:05.491Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="阿里云ECS-Centos7 部署pptp vpn">
-<meta name="twitter:description" content="前言： ​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。 ​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使">
-<meta name="twitter:image" content="http://image.aoof188.cn/th.jpg">
+<meta name="twitter:title" content="志建">
   
     <link rel="alternative" href="/atom.xml" title="志建" type="application/atom+xml">
   
@@ -167,107 +160,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-test" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      阿里云ECS-Centos7 部署pptp vpn
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/04/27/Centos7配置lsync同步/" class="archive-article-date">
+  	<time datetime="2018-04-27T13:57:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/04/27/Centos7配置lsync同步/">Centos7配置lsync同步</a>
     </h1>
   
 
-        
-        <a href="/2018/04/19/test/" class="archive-article-date">
-  	<time datetime="2018-04-19T05:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-
-    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-          <span class="btn-bg"></span>
-          <span class="btn-text">文章导航</span>
-          </p>
-	<div id="toc-article" class="toc-article">
-	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-		<strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#部署PPTP"><span class="toc-number">1.</span> <span class="toc-text">部署PPTP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-number">1.1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置pptp"><span class="toc-number">1.3.</span> <span class="toc-text">配置pptp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置pptp用户"><span class="toc-number">1.4.</span> <span class="toc-text">配置pptp用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开启内核转发"><span class="toc-number">1.5.</span> <span class="toc-text">开启内核转发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置iptables转发规则"><span class="toc-number">1.6.</span> <span class="toc-text">配置iptables转发规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加DNS"><span class="toc-number">1.7.</span> <span class="toc-text">添加DNS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动pptpd"><span class="toc-number">1.8.</span> <span class="toc-text">启动pptpd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端连接"><span class="toc-number">1.9.</span> <span class="toc-text">客户端连接</span></a></li></ol></li></ol>
-         </div>
-   <script type="text/javascript">
-	function showToc(){
-		var toc_article = document.getElementById("toc-article");
-		var show_toc_btn = document.getElementById("show-toc-btn");
-		toc_article.setAttribute("style","display:block");
-		show_toc_btn.setAttribute("style","display:none");
-		};
-	function showBtn(){
-		var toc_article = document.getElementById("toc-article");
-		var show_toc_btn = document.getElementById("show-toc-btn");
-		toc_article.setAttribute("style","display:none");
-		show_toc_btn.setAttribute("style","display:block");
-		};
-   </script>
-      
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://image.aoof188.cn/th.jpg" alt=""></p>
-<p>前言：</p>
-<p>​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。</p>
-<p>​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使用哪种，看个人喜好了，没必要去关注哪个牛逼。</p>
-<h1 id="部署PPTP"><a href="#部署PPTP" class="headerlink" title="部署PPTP"></a>部署PPTP</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# uname -r</span><br><span class="line">3.10.0-327.el7.x86_64</span><br><span class="line">[root@master ~]# cat /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.2.1511 (Core)</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>这种功能性的软件就直接yum安装了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# yum install ppp pptpd</span><br></pre></td></tr></table></figure>
-<h2 id="配置pptp"><a href="#配置pptp" class="headerlink" title="配置pptp"></a>配置pptp</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# vi /etc/pptpd.conf</span><br><span class="line">localip 172.10.26.1</span><br><span class="line">remoteip 172.10.26.128-245</span><br></pre></td></tr></table></figure>
-<h2 id="配置pptp用户"><a href="#配置pptp用户" class="headerlink" title="配置pptp用户"></a>配置pptp用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# vim /etc/ppp/chap-secrets </span><br><span class="line">格式：</span><br><span class="line">	client(用户名)        server(服务)  secret(密码)                  IP addresses(登录获取的ip)</span><br><span class="line">Lorne   pptpd Lorne*&amp;31026 172.10.26.128</span><br></pre></td></tr></table></figure>
-<h2 id="开启内核转发"><a href="#开启内核转发" class="headerlink" title="开启内核转发"></a>开启内核转发</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# echo &apos;net.ipv4.ip_forward = 1&apos; &gt;&gt; /etc/sysctl.conf </span><br><span class="line">[root@master ~]# sysctl -p</span><br></pre></td></tr></table></figure>
-<h2 id="配置iptables转发规则"><a href="#配置iptables转发规则" class="headerlink" title="配置iptables转发规则"></a>配置iptables转发规则</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@master system]# systemctl stop firewalld.service</span><br><span class="line">[root@master system]# systemctl disable firewalld.service</span><br><span class="line">[root@master system]# yum install iptables-services </span><br><span class="line">[root@master ~]# iptables -t nat -A POSTROUTING -s 172.10.26.0/24 -j SNAT --to-source 192.168.1.225</span><br><span class="line">[root@master ~]# iptables -A FORWARD -p tcp --syn -s 172.10.26.0/24 -j TCPMSS --set-mss 1356  将mtu包改小些，防止pptp mtu过大导致其他网络服务堵塞</span><br><span class="line">[root@master system]# systemctl restart iptables.service</span><br><span class="line">[root@master system]# systemctl enable iptables.service</span><br></pre></td></tr></table></figure>
-<h2 id="添加DNS"><a href="#添加DNS" class="headerlink" title="添加DNS"></a>添加DNS</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">]# vim /etc/ppp/options.pptpd</span><br><span class="line"></span><br><span class="line">ms-dns 223.5.5.5</span><br><span class="line">ms-dns 223.6.6.6</span><br></pre></td></tr></table></figure>
-<h2 id="启动pptpd"><a href="#启动pptpd" class="headerlink" title="启动pptpd"></a>启动pptpd</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master system]# systemctl start pptpd</span><br><span class="line">[root@master system]# systemctl enable pptpd</span><br></pre></td></tr></table></figure>
-<h2 id="客户端连接"><a href="#客户端连接" class="headerlink" title="客户端连接"></a>客户端连接</h2>
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>祝老板晚上约炮成功<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://image.aoof188.cn/blog/180426/m5lf1l8bfj.png?imageslim">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://image.aoof188.cn/blog/180426/aid0K9db2A.png?imageslim">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -279,137 +201,27 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sync</a>
+        		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/19/test/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/04/19/posttitle/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          posttitle
-        
-      </div>
-    </a>
   
   
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#部署PPTP"><span class="toc-number">1.</span> <span class="toc-text">部署PPTP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-number">1.1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置pptp"><span class="toc-number">1.3.</span> <span class="toc-text">配置pptp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置pptp用户"><span class="toc-number">1.4.</span> <span class="toc-text">配置pptp用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开启内核转发"><span class="toc-number">1.5.</span> <span class="toc-text">开启内核转发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置iptables转发规则"><span class="toc-number">1.6.</span> <span class="toc-text">配置iptables转发规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加DNS"><span class="toc-number">1.7.</span> <span class="toc-text">添加DNS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动pptpd"><span class="toc-number">1.8.</span> <span class="toc-text">启动pptpd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端连接"><span class="toc-number">1.9.</span> <span class="toc-text">客户端连接</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-  <div id="SOHUCS" sid="test" ></div> 
-<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: "cytzJtAsj",
-        conf: "prod_0669f23104fa000da505958568d50680"
-    });
-</script>
-</script>
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -432,9 +244,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

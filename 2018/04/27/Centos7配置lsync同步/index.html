@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>阿里云ECS-Centos7 部署pptp vpn | 志建</title>
+  <title>Centos7配置lsync同步 | 志建</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言： ​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。 ​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使">
-<meta name="keywords" content="技术,博客">
+  <meta name="description" content="安装依赖：1yum install lua lua-devel -y 安装：1yum install lsyncd -y">
+<meta name="keywords" content="技术,博客,sync">
 <meta property="og:type" content="article">
-<meta property="og:title" content="阿里云ECS-Centos7 部署pptp vpn">
-<meta property="og:url" content="http://yoursite.com/2018/04/19/test/index.html">
+<meta property="og:title" content="Centos7配置lsync同步">
+<meta property="og:url" content="http://yoursite.com/2018/04/27/Centos7配置lsync同步/index.html">
 <meta property="og:site_name" content="志建">
-<meta property="og:description" content="前言： ​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。 ​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使">
+<meta property="og:description" content="安装依赖：1yum install lua lua-devel -y 安装：1yum install lsyncd -y">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://image.aoof188.cn/th.jpg">
-<meta property="og:updated_time" content="2018-04-25T07:16:05.491Z">
+<meta property="og:image" content="http://image.aoof188.cn/blog/180427/E1f5AiF1FD.png?imageslim">
+<meta property="og:updated_time" content="2018-04-27T14:03:35.140Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="阿里云ECS-Centos7 部署pptp vpn">
-<meta name="twitter:description" content="前言： ​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。 ​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使">
-<meta name="twitter:image" content="http://image.aoof188.cn/th.jpg">
+<meta name="twitter:title" content="Centos7配置lsync同步">
+<meta name="twitter:description" content="安装依赖：1yum install lua lua-devel -y 安装：1yum install lsyncd -y">
+<meta name="twitter:image" content="http://image.aoof188.cn/blog/180427/E1f5AiF1FD.png?imageslim">
   
     <link rel="alternative" href="/atom.xml" title="志建" type="application/atom+xml">
   
@@ -167,20 +167,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-test" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Centos7配置lsync同步" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      阿里云ECS-Centos7 部署pptp vpn
+      Centos7配置lsync同步
     </h1>
   
 
         
-        <a href="/2018/04/19/test/" class="archive-article-date">
-  	<time datetime="2018-04-19T05:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
+        <a href="/2018/04/27/Centos7配置lsync同步/" class="archive-article-date">
+  	<time datetime="2018-04-27T13:57:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
 </a>
         
       </header>
@@ -194,7 +194,7 @@
 	<div id="toc-article" class="toc-article">
 	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 		<strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#部署PPTP"><span class="toc-number">1.</span> <span class="toc-text">部署PPTP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-number">1.1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置pptp"><span class="toc-number">1.3.</span> <span class="toc-text">配置pptp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置pptp用户"><span class="toc-number">1.4.</span> <span class="toc-text">配置pptp用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开启内核转发"><span class="toc-number">1.5.</span> <span class="toc-text">开启内核转发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置iptables转发规则"><span class="toc-number">1.6.</span> <span class="toc-text">配置iptables转发规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加DNS"><span class="toc-number">1.7.</span> <span class="toc-text">添加DNS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动pptpd"><span class="toc-number">1.8.</span> <span class="toc-text">启动pptpd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端连接"><span class="toc-number">1.9.</span> <span class="toc-text">客户端连接</span></a></li></ol></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#lsyncd-conf配置选项说明"><span class="toc-number">1.</span> <span class="toc-text">lsyncd.conf配置选项说明</span></a></li></ol>
          </div>
    <script type="text/javascript">
 	function showToc(){
@@ -215,21 +215,27 @@
 
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://image.aoof188.cn/th.jpg" alt=""></p>
-<p>前言：</p>
-<p>​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。</p>
-<p>​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使用哪种，看个人喜好了，没必要去关注哪个牛逼。</p>
-<h1 id="部署PPTP"><a href="#部署PPTP" class="headerlink" title="部署PPTP"></a>部署PPTP</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# uname -r</span><br><span class="line">3.10.0-327.el7.x86_64</span><br><span class="line">[root@master ~]# cat /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.2.1511 (Core)</span><br></pre></td></tr></table></figure>
+        <p><img src="http://image.aoof188.cn/blog/180427/E1f5AiF1FD.png?imageslim" alt=""></p>
+<p><strong>安装依赖：</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install lua lua-devel -y</span><br></pre></td></tr></table></figure></p>
+<p><strong>安装：</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install lsyncd -y</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>这种功能性的软件就直接yum安装了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# yum install ppp pptpd</span><br></pre></td></tr></table></figure>
-<h2 id="配置pptp"><a href="#配置pptp" class="headerlink" title="配置pptp"></a>配置pptp</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# vi /etc/pptpd.conf</span><br><span class="line">localip 172.10.26.1</span><br><span class="line">remoteip 172.10.26.128-245</span><br></pre></td></tr></table></figure>
-<h2 id="配置pptp用户"><a href="#配置pptp用户" class="headerlink" title="配置pptp用户"></a>配置pptp用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# vim /etc/ppp/chap-secrets </span><br><span class="line">格式：</span><br><span class="line">	client(用户名)        server(服务)  secret(密码)                  IP addresses(登录获取的ip)</span><br><span class="line">Lorne   pptpd Lorne*&amp;31026 172.10.26.128</span><br></pre></td></tr></table></figure>
-<h2 id="开启内核转发"><a href="#开启内核转发" class="headerlink" title="开启内核转发"></a>开启内核转发</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# echo &apos;net.ipv4.ip_forward = 1&apos; &gt;&gt; /etc/sysctl.conf </span><br><span class="line">[root@master ~]# sysctl -p</span><br></pre></td></tr></table></figure>
-<h2 id="配置iptables转发规则"><a href="#配置iptables转发规则" class="headerlink" title="配置iptables转发规则"></a>配置iptables转发规则</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@master system]# systemctl stop firewalld.service</span><br><span class="line">[root@master system]# systemctl disable firewalld.service</span><br><span class="line">[root@master system]# yum install iptables-services </span><br><span class="line">[root@master ~]# iptables -t nat -A POSTROUTING -s 172.10.26.0/24 -j SNAT --to-source 192.168.1.225</span><br><span class="line">[root@master ~]# iptables -A FORWARD -p tcp --syn -s 172.10.26.0/24 -j TCPMSS --set-mss 1356  将mtu包改小些，防止pptp mtu过大导致其他网络服务堵塞</span><br><span class="line">[root@master system]# systemctl restart iptables.service</span><br><span class="line">[root@master system]# systemctl enable iptables.service</span><br></pre></td></tr></table></figure>
-<h2 id="添加DNS"><a href="#添加DNS" class="headerlink" title="添加DNS"></a>添加DNS</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">]# vim /etc/ppp/options.pptpd</span><br><span class="line"></span><br><span class="line">ms-dns 223.5.5.5</span><br><span class="line">ms-dns 223.6.6.6</span><br></pre></td></tr></table></figure>
-<h2 id="启动pptpd"><a href="#启动pptpd" class="headerlink" title="启动pptpd"></a>启动pptpd</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master system]# systemctl start pptpd</span><br><span class="line">[root@master system]# systemctl enable pptpd</span><br></pre></td></tr></table></figure>
-<h2 id="客户端连接"><a href="#客户端连接" class="headerlink" title="客户端连接"></a>客户端连接</h2>
+<p><strong>更改配置文件：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-- 本地同步</span><br><span class="line">settings &#123;</span><br><span class="line">    logfile      ="/var/log/lsyncd/lsyncd.log",</span><br><span class="line">    statusFile   ="/var/log/lsyncd/lsyncd.status",</span><br><span class="line">    statusInterval = 1,</span><br><span class="line">    &#125;</span><br><span class="line">sync &#123;</span><br><span class="line">    default.rsync,</span><br><span class="line">    source    = "/opt",</span><br><span class="line">    target    = "/back",</span><br><span class="line">    delay     = 5,</span><br><span class="line">    rsync     = &#123;</span><br><span class="line">        binary    = "/usr/bin/rsync",</span><br><span class="line">        archive   = true,</span><br><span class="line">        compress  = false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">-- 远程同步</span><br><span class="line">settings&#123;</span><br><span class="line">    logfile ="/var/log/lsyncd/lsyncd.log",</span><br><span class="line">    statusFile ="/var/log/lsyncd/lsyncd.status",</span><br><span class="line">    statusInterval = 1,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">servers = &#123;</span><br><span class="line"> "172.16.0.52",</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for _, server in ipairs(servers) do</span><br><span class="line">sync &#123;</span><br><span class="line">    default.rsyncssh,</span><br><span class="line">    source="/data/Seller/certificate",</span><br><span class="line">    host=server,</span><br><span class="line">    targetdir="/data/tomcat_mq/certificate",</span><br><span class="line">    delay = 1,</span><br><span class="line">    rsync = &#123;</span><br><span class="line">        compress = true,</span><br><span class="line">        archive = true,</span><br><span class="line">        verbose = true,</span><br><span class="line">        rsh = "/usr/bin/ssh -p 22 -o StrictHostKeyChecking=no"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p><code>注意：踩了个小坑，lsyncd配置本地同步的时候配置文件末端可以不用加&quot;end&quot;；但是配置远端同步的时候配置文件末端一定要加&quot;end&quot;</code></p>
+<p><strong>启动：</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start lsyncd</span><br></pre></td></tr></table></figure></p>
+<h2 id="lsyncd-conf配置选项说明"><a href="#lsyncd-conf配置选项说明" class="headerlink" title="lsyncd.conf配置选项说明"></a>lsyncd.conf配置选项说明</h2><p>settings<br>里面是全局设置，–开头表示注释，下面是几个常用选项说明：</p>
+<p>logfile 定义日志文件<br>stausFile 定义状态文件<br>nodaemon=true 表示不启用守护模式，默认<br>statusInterval 将lsyncd的状态写入上面的statusFile的间隔，默认10秒<br>inotifyMode 指定inotify监控的事件，默认是CloseWrite，还可以是Modify或CloseWrite or Modify<br>maxProcesses 同步进程的最大个数。假如同时有20个文件需要同步，而maxProcesses = 8，则最大能看到有8个rysnc进程<br>maxDelays 累计到多少所监控的事件激活一次同步，即使后面的delay延迟时间还未到<br>sync<br>里面是定义同步参数，可以继续使用maxDelays来重写settings的全局变量。一般第一个参数指定lsyncd以什么模式运行：rsync、rsyncssh、direct三种模式：</p>
+<p>default.rsync ：本地目录间同步，使用rsync，也可以达到使用ssh形式的远程rsync效果，或daemon方式连接远程rsyncd进程；<br>default.direct ：本地目录间同步，使用cp、rm等命令完成差异文件备份；<br>default.rsyncssh ：同步到远程主机目录，rsync的ssh模式，需要使用key来认证</p>
+<p>source 同步的源目录，使用绝对路径。</p>
+<p>target 定义目的地址.对应不同的模式有几种写法：<br>/tmp/dest ：本地目录同步，可用于direct和rsync模式<br>172.29.88.223:/tmp/dest ：同步到远程服务器目录，可用于rsync和rsyncssh模式，拼接的命令类似于/usr/bin/rsync -ltsd –delete –include-from=- –exclude=* SOURCE TARGET，剩下的就是rsync的内容了，比如指定username，免密码同步<br>172.29.88.223::module ：同步到远程服务器目录，用于rsync模式<br>三种模式的示例会在后面给出。</p>
+<p>init 这是一个优化选项，当init = false，只同步进程启动以后发生改动事件的文件，原有的目录即使有差异也不会同步。默认是true</p>
+<p>delay 累计事件，等待rsync同步延时时间，默认15秒（最大累计到1000个不可合并的事件）。也就是15s内监控目录下发生的改动，会累积到一次rsync同步，避免过于频繁的同步。（可合并的意思是，15s内两次修改了同一文件，最后只同步最新的文件）</p>
+<p>excludeFrom 排除选项，后面指定排除的列表文件，如excludeFrom = “/etc/lsyncd.exclude”，如果是简单的排除，可以使用exclude = LIST。<br>这里的排除规则写法与原生rsync有点不同，更为简单：<br>监控路径里的任何部分匹配到一个文本，都会被排除，例如/bin/foo/bar可以匹配规则foo<br>如果规则以斜线/开头，则从头开始要匹配全部<br>如果规则以/结尾，则要匹配监控路径的末尾<br>“?”匹配任何字符，但不包括/<br>“*“匹配0或多个字符，但不包括/<br>“**”匹配0或多个字符，可以是/<br>delete 为了保持target与souce完全同步，Lsyncd默认会delete = true来允许同步删除。它除了false，还有startup、running值，请参考 Lsyncd 2.1.x ‖ Layer 4 Config ‖ Default Behavior。<br>rsync<br>（提示一下，delete和exclude本来都是rsync的选项，上面是配置在sync中的，我想这样做的原因是为了减少rsync的开销）</p>
+<p>bwlimit 限速，单位kb/s，与rsync相同（这么重要的选项在文档里竟然没有标出）<br>compress 压缩传输默认为true。在带宽与cpu负载之间权衡，本地目录同步可以考虑把它设为false<br>perms 默认保留文件权限。<br>其它rsync的选项</p>
+<p>lsyncd.conf可以有多个sync，各自的source，各自的target，各自的模式，互不影响</p>
+<p>参考：<br><a href="http://seanlook.com/2015/05/06/lsyncd-synchronize-realtime/" target="_blank" rel="noopener">http://seanlook.com/2015/05/06/lsyncd-synchronize-realtime/</a><br><a href="https://www.jianshu.com/p/0ecac4f6baf2" target="_blank" rel="noopener">https://www.jianshu.com/p/0ecac4f6baf2</a></p>
+
       
 
       
@@ -278,6 +284,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sync</a>
         		</li>
       		
 		</ul>
@@ -333,7 +343,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/19/test/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/27/Centos7配置lsync同步/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -347,15 +357,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/19/posttitle/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          posttitle
-        
-      </div>
-    </a>
   
+    <a href="/2018/04/27/tomcat_apr模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">tomcat配置APR模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -380,7 +386,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#部署PPTP"><span class="toc-number">1.</span> <span class="toc-text">部署PPTP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-number">1.1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置pptp"><span class="toc-number">1.3.</span> <span class="toc-text">配置pptp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置pptp用户"><span class="toc-number">1.4.</span> <span class="toc-text">配置pptp用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开启内核转发"><span class="toc-number">1.5.</span> <span class="toc-text">开启内核转发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置iptables转发规则"><span class="toc-number">1.6.</span> <span class="toc-text">配置iptables转发规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加DNS"><span class="toc-number">1.7.</span> <span class="toc-text">添加DNS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动pptpd"><span class="toc-number">1.8.</span> <span class="toc-text">启动pptpd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端连接"><span class="toc-number">1.9.</span> <span class="toc-text">客户端连接</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#lsyncd-conf配置选项说明"><span class="toc-number">1.</span> <span class="toc-text">lsyncd.conf配置选项说明</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -396,7 +402,7 @@
   
 
   
-  <div id="SOHUCS" sid="test" ></div> 
+  <div id="SOHUCS" sid="Centos7配置lsync同步" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
