@@ -6,15 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>志建</title>
+  <title>tomcat配置APR模式 | 志建</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="志建">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="1&amp;gt;、BIO模式：阻塞式I/O操作，表示Tomcat使用的是传统Java I/O操作(即Java.io包及其子包)。Tomcat7以下版本默认情况下是以bio模式运行的，由于每个请求都要创建一个线程来处理，线程开销较大，不能处理高并发的场景，在三种模式中性能也最低。启动tomcat看到如下日志，表示使用的是BIO模式：">
+<meta name="keywords" content="技术,博客,tomcat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tomcat配置APR模式">
+<meta property="og:url" content="http://yoursite.com/2018/04/27/tomcat_apr模式/index.html">
 <meta property="og:site_name" content="志建">
+<meta property="og:description" content="1&amp;gt;、BIO模式：阻塞式I/O操作，表示Tomcat使用的是传统Java I/O操作(即Java.io包及其子包)。Tomcat7以下版本默认情况下是以bio模式运行的，由于每个请求都要创建一个线程来处理，线程开销较大，不能处理高并发的场景，在三种模式中性能也最低。启动tomcat看到如下日志，表示使用的是BIO模式：">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://image.aoof188.cn/blog/180427/GjdDdI9k2f.png?imageslim">
+<meta property="og:image" content="http://image.aoof188.cn/move/doc/attach_14e1b1f81b70fced.png">
+<meta property="og:image" content="http://image.aoof188.cn/move/doc/attach_14e1b203db86066a.png">
+<meta property="og:image" content="http://image.aoof188.cn/move/doc/attach_14e1b2263753718a.png">
+<meta property="og:updated_time" content="2018-04-27T02:29:24.605Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="志建">
+<meta name="twitter:title" content="tomcat配置APR模式">
+<meta name="twitter:description" content="1&amp;gt;、BIO模式：阻塞式I/O操作，表示Tomcat使用的是传统Java I/O操作(即Java.io包及其子包)。Tomcat7以下版本默认情况下是以bio模式运行的，由于每个请求都要创建一个线程来处理，线程开销较大，不能处理高并发的场景，在三种模式中性能也最低。启动tomcat看到如下日志，表示使用的是BIO模式：">
+<meta name="twitter:image" content="http://image.aoof188.cn/blog/180427/GjdDdI9k2f.png?imageslim">
   
     <link rel="alternative" href="/atom.xml" title="志建" type="application/atom+xml">
   
@@ -160,16 +170,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-tomcat_apr模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-tomcat_apr模式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/27/tomcat_apr模式/">tomcat配置APR模式</a>
+    <h1 class="article-title" itemprop="name">
+      tomcat配置APR模式
     </h1>
   
 
@@ -182,17 +190,111 @@
     
 <!-- 目录内容 -->
 
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#启用apr模式步聚"><span class="toc-number">1.</span> <span class="toc-text">启用apr模式步聚</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、安装依赖库"><span class="toc-number">1.1.</span> <span class="toc-text">1、安装依赖库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、安装apr动态库"><span class="toc-number">1.2.</span> <span class="toc-text">2、安装apr动态库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、配置APR本地库到系统共享库搜索路径中"><span class="toc-number">1.3.</span> <span class="toc-text">3、配置APR本地库到系统共享库搜索路径中</span></a></li></ol></li></ol>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      
 <!-- 目录内容结束 -->
 
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://image.aoof188.cn/blog/180427/GjdDdI9k2f.png?imageslim" alt=""></p>
 <p><strong>1&gt;、BIO模式：</strong>阻塞式I/O操作，表示Tomcat使用的是传统Java I/O操作(即Java.io包及其子包)。Tomcat7以下版本默认情况下是以bio模式运行的，由于每个请求都要创建一个线程来处理，线程开销较大，不能处理高并发的场景，在三种模式中性能也最低。启动tomcat看到如下日志，表示使用的是BIO模式：<br><img src="http://image.aoof188.cn/move/doc/attach_14e1b1f81b70fced.png" alt=""></p>
-        
-          <a class="article-more-a" href="/2018/04/27/tomcat_apr模式/#more">more >></a>
-        
+<a id="more"></a>
+<p><strong>2&gt;、NIO模式：</strong>是java SE 1.4及后续版本提供的一种新的I/O操作方式(即java.nio包及其子包)。是一个基于缓冲区、并能提供非阻塞I/O操作的Java API，它拥有比传统I/O操作(bio)更好的并发运行性能。要让Tomcat以nio模式来运行比较简单，只需要在Tomcat安装目录/conf/server.xml文件中将如下配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port="8080" protocol="HTTP/1.1"</span><br><span class="line">connectionTimeout="20000"</span><br><span class="line">redirectPort="8443" /&gt;</span><br></pre></td></tr></table></figure>
+<p>修改成：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port="8080" protocol="org.apache.coyote.http11.Http11NioProtocol"</span><br><span class="line">connectionTimeout="20000"</span><br><span class="line">redirectPort="8443" /&gt;</span><br></pre></td></tr></table></figure>
+<p>NIO2模式：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">直接修改 TOMCAT_HOME目录下的conf/server.xml</span><br><span class="line">protocol="HTTP/1.1"</span><br><span class="line">改为</span><br><span class="line">protocol="org.apache.coyote.http11.Http11Nio2Protocol"</span><br><span class="line">启动即可</span><br></pre></td></tr></table></figure></p>
+<p>注意：Tomcat8以上版本，默认使用的就是NIO模式，不需要额外修改<br><img src="http://image.aoof188.cn/move/doc/attach_14e1b203db86066a.png" alt=""></p>
+<ul>
+<li>protocol，Tomcat 8 设置 nio2 更好：org.apache.coyote.http11.Http11Nio2Protocol</li>
+<li>protocol，Tomcat 6 设置 nio 更好：org.apache.coyote.http11.Http11NioProtocol</li>
+</ul>
+<p><strong>3&gt;、apr模式：</strong>简单理解，就是从操作系统级别解决异步IO问题，大幅度的提高服务器的处理和响应性能， 也是Tomcat运行高并发应用的首选模式。<br>启用这种模式稍微麻烦一些，需要安装一些依赖库，下面以在CentOS7 环境下Tomcat-8.0.35为例，介绍安装步聚：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">APR 1.2+ development headers (libapr1-dev package)</span><br><span class="line">OpenSSL 0.9.7+ development headers (libssl-dev package)</span><br><span class="line">JNI headers from Java compatible JDK 1.4+</span><br><span class="line">GNU development environment (gcc, make)</span><br></pre></td></tr></table></figure></p>
+<h3 id="启用apr模式步聚"><a href="#启用apr模式步聚" class="headerlink" title="启用apr模式步聚"></a>启用apr模式步聚</h3><h4 id="1、安装依赖库"><a href="#1、安装依赖库" class="headerlink" title="1、安装依赖库"></a>1、安装依赖库</h4><p>因为apr模式本质是使用JNI技术调用操作系统IO接口，需要用到相关API的头文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install apr-devel</span><br><span class="line">yum install openssl-devel</span><br><span class="line">yum install gcc</span><br><span class="line">yum install make</span><br></pre></td></tr></table></figure>
+<p><code>注意：openssl库要求在0.9.7以上版本，APR要求在1.2以上版本，用rpm -qa | grep openssl检查本机安装的依赖库版本是否大于或等于apr要求的版本。</code></p>
+<h4 id="2、安装apr动态库"><a href="#2、安装apr动态库" class="headerlink" title="2、安装apr动态库"></a>2、安装apr动态库</h4><p>进入tomcat的bin目录，解压tomcat-native.tar.gz文件，并进入tomcat-native-1.2.7-src/native目录，执行./configure &amp;&amp; make &amp;&amp; make install 命令，动态库默认安装在/usr/local/apr/lib目录下，如下图所示：<br>安装成功<br><img src="http://image.aoof188.cn/move/doc/attach_14e1b2263753718a.png" alt=""></p>
+<h4 id="3、配置APR本地库到系统共享库搜索路径中"><a href="#3、配置APR本地库到系统共享库搜索路径中" class="headerlink" title="3、配置APR本地库到系统共享库搜索路径中"></a>3、配置APR本地库到系统共享库搜索路径中</h4><p>方式1：</p>
+<p>设置LD_LIBRARY_PATH和LD_RUN_PATH环境变量，指向/usr/local/apr/lib目录，可配置到$HOME/.profile文件中<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/apr/lib</span><br><span class="line">export LD_RUN_PATH=$LD_RUN_PATH:/usr/local/apr/lib</span><br></pre></td></tr></table></figure></p>
+<p>方式2：</p>
+<p>拷贝/usr/local/apr/lib目录下所有动态库到/usr/lib或/lib系统共享库搜索目录下即可。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy /usr/local/apr/lib/libtcnative* /usr/lib/</span><br></pre></td></tr></table></figure></p>
+<p>方式3：（推荐）</p>
+<p>编辑$TOMCAT_HOME/bin/catalina.sh文件，在虚拟机启动参数JAVA_OPTS中添加java.library.path参数，指定apr库的路径<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_OPTS="$JAVA_OPTS -Djava.library.path=/usr/local/apr/lib"</span><br></pre></td></tr></table></figure></p>
+<p>Tomcat8以下版本，需要指定运行模式，将protocol从HTTP/1.1改成org.apache.coyote.http11.Http11AprProtocol</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port="8080" protocol="org.apache.coyote.http11.Http11AprProtocol"</span><br><span class="line">connectionTimeout="20000"</span><br><span class="line">redirectPort="8443" /&gt;</span><br></pre></td></tr></table></figure>
+<p>运行Tomcat后，看到如下日志表示开启apr模式成功：<br>APR模式</p>
+<p>如果没有配置SSL相关参数，并且开启了SSL，启动时会发生org.apache.tomcat.jni.Error: 70023: This function has not been implemented on this platform异常：<br>未配置ssl异常<br>如果不想启用SSL，将server.xml中apr模式下ssl关闭即可：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" /&gt;</span><br></pre></td></tr></table></figure>
+<p>将SSLEngine的值从on改成off重启即可：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="off" /&gt;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Tomcat 6.x版本从6.0.32开始就默认支持apr。</li>
+<li>Tomcat 7.x版本从7.0.30开始就默认支持apr。</li>
+<li>因此，如果读者使用的Tomcat版本比较陈旧的话，强烈建议升级到最新的稳定版本。</li>
+</ul>
+<blockquote>
+<p>原文链接：<a href="http://blog.csdn.net/xyang81/article/details/51502766" target="_blank" rel="noopener">http://blog.csdn.net/xyang81/article/details/51502766</a></p>
+</blockquote>
+<p>jdk8下载地址：<a href="http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-arm64-vfp-hflt.tar.gz" target="_blank" rel="noopener">http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-arm64-vfp-hflt.tar.gz</a><br>tomcat8下载地址：<a href="http://mirrors.shu.edu.cn/apache/tomcat/tomcat-8/v8.0.51/bin/apache-tomcat-8.0.51.tar.gz" target="_blank" rel="noopener">http://mirrors.shu.edu.cn/apache/tomcat/tomcat-8/v8.0.51/bin/apache-tomcat-8.0.51.tar.gz</a></p>
+<p>apr下载地址：<a href="http://mirror.bit.edu.cn/apache//apr/apr-1.6.3.tar.gz" target="_blank" rel="noopener">http://mirror.bit.edu.cn/apache//apr/apr-1.6.3.tar.gz</a></p>
+<p>apr-util下载地址：<a href="http://mirror.bit.edu.cn/apache//apr/apr-util-1.6.1.tar.gz" target="_blank" rel="noopener">http://mirror.bit.edu.cn/apache//apr/apr-util-1.6.1.tar.gz</a></p>
+<p><strong>安装脚本：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>/bin/bash</span><br><span class="line">rm -rf /var/tomc*</span><br><span class="line">rpm -Uvh jdk-8u171-linux-x64.rpm</span><br><span class="line">tar zfvxp apache-tomcat-8.0.51.tar.gz</span><br><span class="line">tar zfvxp apr-1.6.3.tar.gz</span><br><span class="line">tar zfvxp apr-util-1.6.1.tar.gz</span><br><span class="line"></span><br><span class="line">yum install telnet gcc make openssl-devel -y</span><br><span class="line"></span><br><span class="line">mv /root/install/apache-tomcat-8.0.51 /var/tomcat</span><br><span class="line">   </span><br><span class="line">cd /root/install/apr-1.6.3</span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install</span><br><span class="line"> </span><br><span class="line">cd /root/install/apr-util-1.6.1</span><br><span class="line">./configure --with-apr=/usr/local/apr --with-ssl=/usr/bin --with-java-home=/usr/java/jdk1.8.0_91 &amp;&amp; make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">cd /var/tomcat/bin/</span><br><span class="line">tar zfvx tomcat-native.tar.gz</span><br><span class="line">cd /var/tomcat/bin/tomcat-native-1.1.33-src/jni/native/</span><br><span class="line">./configure --with-apr=/usr/local/apr --with-ssl=/usr/bin --with-java-home=/usr/java/jdk1.8.0_91 &amp;&amp; make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cat &gt; /etc/init.d/tomcat&lt;&lt;Eof</span><br><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> Startup script for the tomcat</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> chkconfig: 345 80 15</span><br><span class="line"><span class="meta">#</span> description: Tomcat is a Servlet+JSP Engine.</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> Source function library.</span><br><span class="line">. /etc/rc.d/init.d/functions</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/local/apr/lib</span><br><span class="line"></span><br><span class="line">JAVA_HOME=/usr/java/jdk1.8.0_171</span><br><span class="line"></span><br><span class="line">CATALINA_HOME=/data/tomcat</span><br><span class="line"></span><br><span class="line">export JAVA_HOME CATALINA_HOME</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">start()&#123;</span><br><span class="line">if [ -z "\$(/sbin/pidof java)" ]; then</span><br><span class="line">echo "Starting tomcat"</span><br><span class="line">su -c /var/tomcat/bin/startup.sh tomcat</span><br><span class="line">touch /var/lock/subsys/tomcat</span><br><span class="line">else</span><br><span class="line">echo "tomcat allready running"</span><br><span class="line">fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">stop()&#123;</span><br><span class="line">if [ ! -z "\$(/sbin/pidof java)" ]; then</span><br><span class="line">echo "Shutting down tomcat"</span><br><span class="line">killall -9 java   #注意此处是kill掉所有java进程，请根据需求自行修改</span><br><span class="line">until [ -z "\$(/sbin/pidof java)" ]; do :; done</span><br><span class="line">rm -f /var/lock/subsys/tomcat</span><br><span class="line">else</span><br><span class="line">echo "tomcat not running"</span><br><span class="line">fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">case "\$1" in</span><br><span class="line">start)</span><br><span class="line">start</span><br><span class="line">;;</span><br><span class="line">stop)</span><br><span class="line">stop</span><br><span class="line">;;</span><br><span class="line">restart)</span><br><span class="line">stop</span><br><span class="line">start</span><br><span class="line">;;</span><br><span class="line">status)</span><br><span class="line">/var/tomcat/bin/catalina.sh version</span><br><span class="line">;;</span><br><span class="line">*)</span><br><span class="line">echo "Usage: \$0 &#123;start|stop|restart|status&#125;"</span><br><span class="line">esac</span><br><span class="line"></span><br><span class="line">exit 0</span><br><span class="line">Eof</span><br><span class="line"></span><br><span class="line">sed -i 's/&lt;Context&gt;/&lt;Context reloadable="true"&gt;/g' /var/tomcat/conf/context.xml</span><br><span class="line">sed -i 's/localhost_access_log./localhost_access_log/g' /var/tomcat/conf/server.xml</span><br><span class="line">sed -i '138d' /var/tomcat/conf/server.xml</span><br><span class="line">sed -i '137d' /var/tomcat/conf/server.xml</span><br><span class="line">sed -i '136d' /var/tomcat/conf/server.xml</span><br><span class="line">sed -i '136i\               prefix="localhost_access_log" suffix=".txt"' /var/tomcat/conf/server.xml</span><br><span class="line">sed -i '137i\               rotatable="false"' /var/tomcat/conf/server.xml</span><br><span class="line">sed -i '138i\               pattern="%&#123;X-Forwarded-For&#125;i %h %l %u %t &amp;quot;%r&amp;quot; %s %b" /&gt;' /var/tomcat/conf/server.xml</span><br><span class="line">useradd tomcat</span><br><span class="line">chmod a+x /etc/init.d/tomcat</span><br><span class="line">chown tomcat.tomcat /data/tomcat -R</span><br><span class="line">chkconfig tomcat on</span><br><span class="line">service tomcat start</span><br><span class="line"></span><br><span class="line">cat &gt; /etc/logrotate.d/tomcat_catalina&lt;&lt;Eof</span><br><span class="line">/var/tomcat/logs/catalina.out &#123;  </span><br><span class="line">rotate 30  </span><br><span class="line">daily  </span><br><span class="line">copytruncate  </span><br><span class="line">compress  </span><br><span class="line">notifempty  </span><br><span class="line">missingok  </span><br><span class="line">&#125;  </span><br><span class="line">Eof</span><br><span class="line"></span><br><span class="line">cat &gt; /etc/logrotate.d/tomcat_access&lt;&lt;Eof</span><br><span class="line">/var/tomcat/logs/localhost_access_log.txt &#123;  </span><br><span class="line">rotate 30  </span><br><span class="line">daily  </span><br><span class="line">copytruncate  </span><br><span class="line">compress  </span><br><span class="line">notifempty  </span><br><span class="line">missingok  </span><br><span class="line">&#125;  </span><br><span class="line">Eof</span><br></pre></td></tr></table></figure>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>祝老板晚上约炮成功<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://image.aoof188.cn/blog/180426/m5lf1l8bfj.png?imageslim">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://image.aoof188.cn/blog/180426/aid0K9db2A.png?imageslim">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -220,16 +322,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/27/tomcat_apr模式/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/27/tomcat_apr模式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/26/nodejs便捷安装/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">centos便捷安装nodejs</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -244,451 +405,42 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-nodejs便捷安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/26/nodejs便捷安装/">centos便捷安装nodejs</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/26/nodejs便捷安装/" class="archive-article-date">
-  	<time datetime="2018-04-26T09:03:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-26</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://image.aoof188.cn/blog/180426/JJh8EImClH.png?imageslim" alt=""></p>
-<p><strong>Enterprise Linux和Fedora</strong><br><strong>包括RedHat®EnterpriseLinux® / RHEL，CentOS和Fedora。</strong></p>
-<p>Node.js可以从NodeSource Enterprise Linux和Fedora二进制发行版库获得。可以在GitHub的nodesource / distributions上找到对此存储库及其脚本的支持。</p>
-<p>请注意，EL 5的Node.js包（RHEL5和CentOS 5）取决于EPEL存储库的可用性。如果未安装，安装脚本将检查并提供说明。</p>
-        
-          <a class="article-more-a" href="/2018/04/26/nodejs便捷安装/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">nodejs</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/26/nodejs便捷安装/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#启用apr模式步聚"><span class="toc-number">1.</span> <span class="toc-text">启用apr模式步聚</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、安装依赖库"><span class="toc-number">1.1.</span> <span class="toc-text">1、安装依赖库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、安装apr动态库"><span class="toc-number">1.2.</span> <span class="toc-text">2、安装apr动态库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、配置APR本地库到系统共享库搜索路径中"><span class="toc-number">1.3.</span> <span class="toc-text">3、配置APR本地库到系统共享库搜索路径中</span></a></li></ol></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-hexo+github搭建博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/25/hexo+github搭建博客/">hexo结合github搭建博客</a>
-    </h1>
   
 
-        
-        <a href="/2018/04/25/hexo+github搭建博客/" class="archive-article-date">
-  	<time datetime="2018-04-25T08:03:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-25</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://image.aoof188.cn/blog/180425/gJe427kdm6.png?imageslim" alt="mark"></p>
-<p><em>作为一个运维需要有一个自己的博客。哈哈哈</em></p>
-<h2 id="准备："><a href="#准备：" class="headerlink" title="准备："></a>准备：</h2><ul>
-<li><p>域名</p>
-</li>
-<li><p>一台主机（linux、mac、windows都可以）安装好<strong>nodejs、git</strong></p>
-</li>
-<li><p>github账号</p>
-</li>
-<li><p>我本次搭建的hexo使用的主题是“yilia”个人觉得这个主机简洁很好看，感谢每一位开源贡献的人，因为你们世界将变得更美好。评论使用“畅言”。</p>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2018/04/25/hexo+github搭建博客/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/25/hexo+github搭建博客/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-SecureCRT创建密钥ssh登录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/23/SecureCRT创建密钥ssh登录/">SecureCRT创建密钥ssh登录</a>
-    </h1>
+  <div id="SOHUCS" sid="tomcat_apr模式" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytzJtAsj",
+        conf: "prod_0669f23104fa000da505958568d50680"
+    });
+</script>
+</script>
   
 
-        
-        <a href="/2018/04/23/SecureCRT创建密钥ssh登录/" class="archive-article-date">
-  	<time datetime="2018-04-23T05:30:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://image.aoof188.cn/18-4-23/5921460.jpg" alt=""></p>
-<p><strong> 建立步骤如下：</strong><br>
-        
-          <a class="article-more-a" href="/2018/04/23/SecureCRT创建密钥ssh登录/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/23/SecureCRT创建密钥ssh登录/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-posttitle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/19/posttitle/">posttitle</a>
-    </h1>
   
 
-        
-        <a href="/2018/04/19/posttitle/" class="archive-article-date">
-  	<time datetime="2018-04-19T06:24:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://image.aoof188.cn/18-4-20/52444405.jpg" alt=""></p>
-<p>请静静的欣赏美女~</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/19/posttitle/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-test" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/19/test/">阿里云ECS-Centos7 部署pptp vpn</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/19/test/" class="archive-article-date">
-  	<time datetime="2018-04-19T05:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://image.aoof188.cn/th.jpg" alt=""></p>
-<p>前言：</p>
-<p>​    公司线上环境都在阿里云上，大部分使用的是VPC网络(相当于内网)，需要连接线上服务器进行管理需要连接vpn进行登录才行。目前公司业务还没那么清晰，各方面也没有进行合理规划的管理，其他一些业务市场的也需要连接vpn，对数据库进行查询，这比较操蛋，但是没办法。只能部署一个vpn。</p>
-<p>​    常见的VPN服务有：PPTP，L2TP，IPSec，SSL VPN(openvpn)。至于使用哪种，看个人喜好了，没必要去关注哪个牛逼。</p>
-<h1 id="部署PPTP"><a href="#部署PPTP" class="headerlink" title="部署PPTP"></a>部署PPTP</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# uname -r</span><br><span class="line">3.10.0-327.el7.x86_64</span><br><span class="line">[root@master ~]# cat /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.2.1511 (Core)</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/04/19/test/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/19/test/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -711,8 +463,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
