@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://image.aoof188.cn/move/doc/attach_14e1b1f81b70fced.png">
 <meta property="og:image" content="http://image.aoof188.cn/move/doc/attach_14e1b203db86066a.png">
 <meta property="og:image" content="http://image.aoof188.cn/move/doc/attach_14e1b2263753718a.png">
-<meta property="og:updated_time" content="2018-04-27T02:29:24.605Z">
+<meta property="og:updated_time" content="2018-04-27T03:39:39.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tomcat配置APR模式">
 <meta name="twitter:description" content="1&amp;gt;、BIO模式：阻塞式I/O操作，表示Tomcat使用的是传统Java I/O操作(即Java.io包及其子包)。Tomcat7以下版本默认情况下是以bio模式运行的，由于每个请求都要创建一个线程来处理，线程开销较大，不能处理高并发的场景，在三种模式中性能也最低。启动tomcat看到如下日志，表示使用的是BIO模式：">
@@ -219,8 +219,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://image.aoof188.cn/blog/180427/GjdDdI9k2f.png?imageslim" alt=""></p>
-<p><strong>1&gt;、BIO模式：</strong>阻塞式I/O操作，表示Tomcat使用的是传统Java I/O操作(即Java.io包及其子包)。Tomcat7以下版本默认情况下是以bio模式运行的，由于每个请求都要创建一个线程来处理，线程开销较大，不能处理高并发的场景，在三种模式中性能也最低。启动tomcat看到如下日志，表示使用的是BIO模式：<br><img src="http://image.aoof188.cn/move/doc/attach_14e1b1f81b70fced.png" alt=""></p>
-<a id="more"></a>
+<p><strong>1&gt;、BIO模式：</strong>阻塞式I/O操作，表示Tomcat使用的是传统Java I/O操作(即Java.io包及其子包)。Tomcat7以下版本默认情况下是以bio模式运行的，由于每个请求都要创建一个线程来处理，线程开销较大，不能处理高并发的场景，在三种模式中性能也最低。启动tomcat看到如下日志，表示使用的是BIO模式：<br><a id="more"></a><br><img src="http://image.aoof188.cn/move/doc/attach_14e1b1f81b70fced.png" alt=""></p>
 <p><strong>2&gt;、NIO模式：</strong>是java SE 1.4及后续版本提供的一种新的I/O操作方式(即java.nio包及其子包)。是一个基于缓冲区、并能提供非阻塞I/O操作的Java API，它拥有比传统I/O操作(bio)更好的并发运行性能。要让Tomcat以nio模式来运行比较简单，只需要在Tomcat安装目录/conf/server.xml文件中将如下配置：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port="8080" protocol="HTTP/1.1"</span><br><span class="line">connectionTimeout="20000"</span><br><span class="line">redirectPort="8443" /&gt;</span><br></pre></td></tr></table></figure>
 <p>修改成：</p>
