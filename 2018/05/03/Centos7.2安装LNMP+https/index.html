@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 随笔 | </title>
+  <title>Centos7.2安装LNMP+https | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="http://yoursite.com/tags/随笔/index.html">
+  <meta name="description" content="安装：Mysql:123456789101112cat /etc/yum.repos.d/MariaDB.repo# MariaDB 10.2 CentOS repository list - created 2017-11-07 10:00 UTC# http://downloads.mariadb.org/mariadb/repositories/[mariadb]name = MariaD">
+<meta name="keywords" content="技术,博客,运维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos7.2安装LNMP+https">
+<meta property="og:url" content="http://yoursite.com/2018/05/03/Centos7.2安装LNMP+https/index.html">
 <meta property="og:site_name">
+<meta property="og:description" content="安装：Mysql:123456789101112cat /etc/yum.repos.d/MariaDB.repo# MariaDB 10.2 CentOS repository list - created 2017-11-07 10:00 UTC# http://downloads.mariadb.org/mariadb/repositories/[mariadb]name = MariaD">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://image.aoof188.cn/blog/180503/iae9JH4Dl9.png?imageslim">
+<meta property="og:updated_time" content="2018-05-03T08:16:47.781Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
+<meta name="twitter:title" content="Centos7.2安装LNMP+https">
+<meta name="twitter:description" content="安装：Mysql:123456789101112cat /etc/yum.repos.d/MariaDB.repo# MariaDB 10.2 CentOS repository list - created 2017-11-07 10:00 UTC# http://downloads.mariadb.org/mariadb/repositories/[mariadb]name = MariaD">
+<meta name="twitter:image" content="https://image.aoof188.cn/blog/180503/iae9JH4Dl9.png?imageslim">
   
     <link rel="alternative" href="/atom.xml" title="" type="application/atom+xml">
   
@@ -160,60 +167,262 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Centos7.2安装LNMP+https" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/19/posttitle/" class="archive-article-date">
-  	<time datetime="2018-04-19T06:24:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/posttitle/">posttitle</a>
+    <h1 class="article-title" itemprop="name">
+      Centos7.2安装LNMP+https
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/05/03/Centos7.2安装LNMP+https/" class="archive-article-date">
+  	<time datetime="2018-05-03T08:03:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-03</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装："><span class="toc-number">1.</span> <span class="toc-text">安装：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mysql"><span class="toc-number">1.1.</span> <span class="toc-text">Mysql:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx"><span class="toc-number">1.2.</span> <span class="toc-text">nginx:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#php"><span class="toc-number">1.3.</span> <span class="toc-text">php:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置："><span class="toc-number">2.</span> <span class="toc-text">配置：</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      
+<!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://image.aoof188.cn/blog/180503/iae9JH4Dl9.png?imageslim" alt=""></p>
+<h2 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h2><h3 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql:"></a>Mysql:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/yum.repos.d/MariaDB.repo</span><br><span class="line"><span class="meta">#</span> MariaDB 10.2 CentOS repository list - created 2017-11-07 10:00 UTC</span><br><span class="line"><span class="meta">#</span> http://downloads.mariadb.org/mariadb/repositories/</span><br><span class="line">[mariadb]</span><br><span class="line">name = MariaDB</span><br><span class="line">baseurl = http://yum.mariadb.org/10.2/centos7-amd64</span><br><span class="line">gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB</span><br><span class="line">gpgcheck=1</span><br><span class="line"></span><br><span class="line">[root@xiaodian_test_s1 ~]# yum install MariaDB -y</span><br><span class="line">[root@xiaodian_test_s1 ~]# mysql --version</span><br><span class="line">mysql  Ver 15.1 Distrib 10.2.10-MariaDB, for Linux (x86_64) using readline 5.1</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx:"></a>nginx:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaodian_test_s1 ~]# yum install nginx -y</span><br><span class="line">[root@xiaodian_test_s1 ~]# nginx -v</span><br><span class="line">nginx version: nginx/1.10.2</span><br></pre></td></tr></table></figure>
+<h3 id="php"><a href="#php" class="headerlink" title="php:"></a>php:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaodian_test_s1 ~]# rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</span><br><span class="line">[root@xiaodian_test_s1 ~]# rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</span><br><span class="line">[root@xiaodian_test_s1 ~]# yum -y install php70w-devel php70w.x86_64 php70w-cli.x86_64 php70w-common.x86_64 php70w-gd.x86_64 php70w-ldap.x86_64 php70w-mbstring.x86_64 php70w-mcrypt.x86_64  php70w-pdo.x86_64   php70w-mysqlnd  php70w-fpm php70w-opcache php70w-pecl-redis php70w-pecl-mongo</span><br><span class="line"></span><br><span class="line">[root@xiaodian_test_s1 ~]# php --version</span><br><span class="line">PHP 7.0.27 (cli) (built: Jan 14 2018 09:00:22) ( NTS )</span><br><span class="line">Copyright (c) 1997-2017 The PHP Group</span><br><span class="line">Zend Engine v3.0.0, Copyright (c) 1998-2017 Zend Technologies</span><br><span class="line">    with Zend OPcache v7.0.27, Copyright (c) 1999-2017, by Zend Technologies</span><br></pre></td></tr></table></figure>
+<h2 id="配置："><a href="#配置：" class="headerlink" title="配置："></a>配置：</h2><ul>
+<li><p>我们给开发上传代码创建一个账号。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd webapp -g nginx   #创建webapp用户并加入nginx组</span><br><span class="line">passw webapp  #设置密码</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改nginx的user,注释掉默认的server：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/nginx.conf</span><br><span class="line">	user webapp nginx;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改php-fpm配置的用户：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/php-fpm.d/www.conf </span><br><span class="line">	user = webapp</span><br><span class="line">	group = nginx</span><br><span class="line">	listen.owner = webapp</span><br><span class="line">	listen.group = nginx</span><br><span class="line">	listen.mode = 0660</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建虚拟主机：</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaodian_test_s1 ~]# vim /etc/nginx/conf.d/platformapi.77s.vip.conf</span><br><span class="line"></span><br><span class="line">server&#123;</span><br><span class="line">listen 443;</span><br><span class="line">ssl on;</span><br><span class="line">server_name platformapi.77s.vip;</span><br><span class="line">root    /home/webapp/public;</span><br><span class="line">    ssl_certificate "/etc/pki/nginx/214516699910679.pem";</span><br><span class="line">    ssl_certificate_key "/etc/pki/nginx/214516699910679.key";</span><br><span class="line">    ssl_session_cache shared:SSL:1m;</span><br><span class="line">    ssl_session_timeout  10m;</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">try_files   $uri  $uri/ /index.php?$args;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">location / &#123;</span><br><span class="line">    #定义首页索引文件的名称</span><br><span class="line">    root /home/webapp/public/mini_program/public;</span><br><span class="line">    index index.php index.html index.htm;</span><br><span class="line">    if (!-e $request_filename) &#123;</span><br><span class="line">        rewrite (.*) /index.php;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置.</span><br><span class="line">location ~ .php$ &#123;</span><br><span class="line">    fastcgi_split_path_info  ^(.+?\.php)(/.*)$;</span><br><span class="line">    if (!-f $document_root$fastcgi_script_name) &#123;</span><br><span class="line">           return 404;</span><br><span class="line">    &#125;</span><br><span class="line">    root /home/webapp/public/mini_program/public;</span><br><span class="line">    fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">    fastcgi_index index.php;</span><br><span class="line">    fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">    fastcgi_param  PATH_INFO        $fastcgi_path_info;</span><br><span class="line">    fastcgi_param  PATH_TRANSLATED  $document_root$fastcgi_path_info;</span><br><span class="line">    include fastcgi_params;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>上传证书</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaodian_test_s1 ~]# mkdir /etc/pki/nginx/ -pv</span><br><span class="line">[root@xiaodian_test_s1 ~]# cd /etc/pki/nginx/</span><br><span class="line">[root@xiaodian_test_s1 nginx]# ll</span><br><span class="line">total 20</span><br><span class="line">-rw-r--r-- 1 webapp nginx 1675 Mar 23 17:22 214516699910679.key</span><br><span class="line">-rw-r--r-- 1 webapp nginx 4145 Mar 23 17:22 214516699910679.pem</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建目录创建测试页<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir -pv /home/webapp/public</span><br><span class="line">[root@xiaodian_test_s1 public]# vim index.php</span><br><span class="line">&lt;?php phpinfo();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>祝老板晚上约炮成功<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://image.aoof188.cn/blog/180426/m5lf1l8bfj.png?imageslim">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://image.aoof188.cn/blog/180426/aid0K9db2A.png?imageslim">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">运维</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/03/Centos7.2安装LNMP+https/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/04/27/Centos7配置lsync同步/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Centos7配置lsync同步</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装："><span class="toc-number">1.</span> <span class="toc-text">安装：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mysql"><span class="toc-number">1.1.</span> <span class="toc-text">Mysql:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx"><span class="toc-number">1.2.</span> <span class="toc-text">nginx:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#php"><span class="toc-number">1.3.</span> <span class="toc-text">php:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置："><span class="toc-number">2.</span> <span class="toc-text">配置：</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="Centos7.2安装LNMP+https" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytzJtAsj",
+        conf: "prod_0669f23104fa000da505958568d50680"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -247,9 +456,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
