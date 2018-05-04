@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Centos7配置lsync同步 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装依赖：1yum install lua lua-devel -y 安装：1yum install lsyncd -y">
+  <meta name="description" content="– Lysncd 实际上是lua语言封装了inotify和rsync工具，采用了Linux内核（2.6.13及以后）里的inotify触发机制，然后通过rsync去差异同步，达到实时的效果。– 最亮的特性：完美解决了inotify+rsync海量文件同步带来的文件频繁发送文件列表的问题 —— 通过时间延迟或累计触发事件次数实现。– 它的配置方式很简单，lua本身就是一种配置语言，可读性非常强。–">
 <meta name="keywords" content="技术,博客,sync">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Centos7配置lsync同步">
 <meta property="og:url" content="http://yoursite.com/2018/04/27/Centos7配置lsync同步/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="安装依赖：1yum install lua lua-devel -y 安装：1yum install lsyncd -y">
+<meta property="og:description" content="– Lysncd 实际上是lua语言封装了inotify和rsync工具，采用了Linux内核（2.6.13及以后）里的inotify触发机制，然后通过rsync去差异同步，达到实时的效果。– 最亮的特性：完美解决了inotify+rsync海量文件同步带来的文件频繁发送文件列表的问题 —— 通过时间延迟或累计触发事件次数实现。– 它的配置方式很简单，lua本身就是一种配置语言，可读性非常强。–">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://image.aoof188.cn/blog/180427/E1f5AiF1FD.png?imageslim">
-<meta property="og:updated_time" content="2018-04-27T14:03:35.140Z">
+<meta property="og:updated_time" content="2018-05-04T03:34:15.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos7配置lsync同步">
-<meta name="twitter:description" content="安装依赖：1yum install lua lua-devel -y 安装：1yum install lsyncd -y">
+<meta name="twitter:description" content="– Lysncd 实际上是lua语言封装了inotify和rsync工具，采用了Linux内核（2.6.13及以后）里的inotify触发机制，然后通过rsync去差异同步，达到实时的效果。– 最亮的特性：完美解决了inotify+rsync海量文件同步带来的文件频繁发送文件列表的问题 —— 通过时间延迟或累计触发事件次数实现。– 它的配置方式很简单，lua本身就是一种配置语言，可读性非常强。–">
 <meta name="twitter:image" content="http://image.aoof188.cn/blog/180427/E1f5AiF1FD.png?imageslim">
   
     <link rel="alternative" href="/atom.xml" title="" type="application/atom+xml">
@@ -216,9 +216,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://image.aoof188.cn/blog/180427/E1f5AiF1FD.png?imageslim" alt=""></p>
+<p>– Lysncd 实际上是lua语言封装了inotify和rsync工具，采用了Linux内核（2.6.13及以后）里的inotify触发机制，然后通过rsync去差异同步，达到实时的效果。<br>– 最亮的特性：完美解决了inotify+rsync海量文件同步带来的文件频繁发送文件列表的问题 —— 通过时间延迟或累计触发事件次数实现。<br>– 它的配置方式很简单，lua本身就是一种配置语言，可读性非常强。<br>– lsyncd也有多种工作模式可以选择，本地目录cp，本地目录rsync，远程目录rsyncssh。<br>– 实现简单高效的本地目录同步备份（网络存储挂载也当作本地目录），一个命令搞定。</p>
+<a id="more"></a>
 <p><strong>安装依赖：</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install lua lua-devel -y</span><br></pre></td></tr></table></figure></p>
 <p><strong>安装：</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install lsyncd -y</span><br></pre></td></tr></table></figure></p>
-<a id="more"></a>
 <p><strong>更改配置文件：</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-- 本地同步</span><br><span class="line">settings &#123;</span><br><span class="line">    logfile      ="/var/log/lsyncd/lsyncd.log",</span><br><span class="line">    statusFile   ="/var/log/lsyncd/lsyncd.status",</span><br><span class="line">    statusInterval = 1,</span><br><span class="line">    &#125;</span><br><span class="line">sync &#123;</span><br><span class="line">    default.rsync,</span><br><span class="line">    source    = "/opt",</span><br><span class="line">    target    = "/back",</span><br><span class="line">    delay     = 5,</span><br><span class="line">    rsync     = &#123;</span><br><span class="line">        binary    = "/usr/bin/rsync",</span><br><span class="line">        archive   = true,</span><br><span class="line">        compress  = false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">-- 远程同步</span><br><span class="line">settings&#123;</span><br><span class="line">    logfile ="/var/log/lsyncd/lsyncd.log",</span><br><span class="line">    statusFile ="/var/log/lsyncd/lsyncd.status",</span><br><span class="line">    statusInterval = 1,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">servers = &#123;</span><br><span class="line"> "172.16.0.52",</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for _, server in ipairs(servers) do</span><br><span class="line">sync &#123;</span><br><span class="line">    default.rsyncssh,</span><br><span class="line">    source="/data/Seller/certificate",</span><br><span class="line">    host=server,</span><br><span class="line">    targetdir="/data/tomcat_mq/certificate",</span><br><span class="line">    delay = 1,</span><br><span class="line">    rsync = &#123;</span><br><span class="line">        compress = true,</span><br><span class="line">        archive = true,</span><br><span class="line">        verbose = true,</span><br><span class="line">        rsh = "/usr/bin/ssh -p 22 -o StrictHostKeyChecking=no"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>

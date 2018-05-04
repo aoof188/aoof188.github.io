@@ -187,7 +187,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="https://image.aoof188.cn/blog/180503/iae9JH4Dl9.png?imageslim" alt=""></p>
-<h2 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h2><h3 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql:"></a>Mysql:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/yum.repos.d/MariaDB.repo</span><br><span class="line"><span class="meta">#</span> MariaDB 10.2 CentOS repository list - created 2017-11-07 10:00 UTC</span><br><span class="line"><span class="meta">#</span> http://downloads.mariadb.org/mariadb/repositories/</span><br><span class="line">[mariadb]</span><br><span class="line">name = MariaDB</span><br><span class="line">baseurl = http://yum.mariadb.org/10.2/centos7-amd64</span><br><span class="line">gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB</span><br><span class="line">gpgcheck=1</span><br><span class="line"></span><br><span class="line">[root@xiaodian_test_s1 ~]# yum install MariaDB -y</span><br><span class="line">[root@xiaodian_test_s1 ~]# mysql --version</span><br><span class="line">mysql  Ver 15.1 Distrib 10.2.10-MariaDB, for Linux (x86_64) using readline 5.1</span><br></pre></td></tr></table></figure>
+<h2 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h2>
         
           <a class="article-more-a" href="/2018/05/03/Centos7.2安装LNMP+https/#more">more >></a>
         
@@ -276,8 +276,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://image.aoof188.cn/blog/180427/E1f5AiF1FD.png?imageslim" alt=""></p>
-<p><strong>安装依赖：</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install lua lua-devel -y</span><br></pre></td></tr></table></figure></p>
-<p><strong>安装：</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install lsyncd -y</span><br></pre></td></tr></table></figure></p>
+<p>– Lysncd 实际上是lua语言封装了inotify和rsync工具，采用了Linux内核（2.6.13及以后）里的inotify触发机制，然后通过rsync去差异同步，达到实时的效果。<br>– 最亮的特性：完美解决了inotify+rsync海量文件同步带来的文件频繁发送文件列表的问题 —— 通过时间延迟或累计触发事件次数实现。<br>– 它的配置方式很简单，lua本身就是一种配置语言，可读性非常强。<br>– lsyncd也有多种工作模式可以选择，本地目录cp，本地目录rsync，远程目录rsyncssh。<br>– 实现简单高效的本地目录同步备份（网络存储挂载也当作本地目录），一个命令搞定。</p>
         
           <a class="article-more-a" href="/2018/04/27/Centos7配置lsync同步/#more">more >></a>
         
