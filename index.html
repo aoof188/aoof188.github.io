@@ -162,95 +162,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-基于Kubernetes构建企业容器云" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="基于Kubernetes构建企业容器云-一"><a href="#基于Kubernetes构建企业容器云-一" class="headerlink" title="基于Kubernetes构建企业容器云(一)"></a>基于Kubernetes构建企业容器云(一)</h1><p>实验环境：</p>
-<table>
-<thead>
-<tr>
-<th>IP地址</th>
-<th>主机名</th>
-<th>系统</th>
-<th>配置</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>192.168.56.11</td>
-<td>linux-node1</td>
-<td>Centos7.5</td>
-<td>1核2G</td>
-</tr>
-<tr>
-<td>192.168.56.12</td>
-<td>linux-node2</td>
-<td>Centos7.5</td>
-<td>1核2G</td>
-</tr>
-<tr>
-<td>192.168.56.13</td>
-<td>linux-node3</td>
-<td>Centos7.5</td>
-<td>1核2G</td>
-</tr>
-</tbody>
-</table>
-<h2 id="实验环境准备"><a href="#实验环境准备" class="headerlink" title="实验环境准备"></a>实验环境准备</h2><ul>
-<li>安装系统<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(只安装第一台，其它的可以克隆第一台)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>安装系统时追加参数，设置网卡名称为 eth0<br>选择Install Centos7 按Tab键 追加 “net.ifnames=0 biosdevname=0”</p>
-        
-          <a class="article-more-a" href="/2018/12/05/基于Kubernetes构建企业容器云/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/05/基于Kubernetes构建企业容器云/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-kubernetes1.12安装(kubeadm)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -258,7 +169,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/05/kubernetes1.12安装(kubeadm)/">Centos7.2安装LNMP+https</a>
+      <a class="article-title" href="/2018/12/05/kubernetes1.12安装(kubeadm)/">kubernetes1.12安装(kubeadm)</a>
     </h1>
   
 
@@ -275,7 +186,7 @@
 
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="kubernetes1-12安装-kubeadm"><a href="#kubernetes1-12安装-kubeadm" class="headerlink" title="kubernetes1.12安装(kubeadm)"></a>kubernetes1.12安装(kubeadm)</h1><p><img src="http://image.aoof188.cn/blog/20181205/XU8yhnYOae0Q.png?imageslim" alt="mark"></p>
+        <p><img src="http://image.aoof188.cn/blog/20181205/XU8yhnYOae0Q.png?imageslim" alt="mark"></p>
 <p>服务器：<br>172.16.0.14 master.test.com master<br>172.16.0.2 node01.test.com node01<br>172.16.0.12 node02.test.com node02</p>
 <p>三台腾讯与的服务器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# cat /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.6.1810 (Core) </span><br><span class="line">[root@master ~]# uname -a</span><br><span class="line">Linux master 3.10.0-957.1.3.el7.x86_64 #1 SMP Thu Nov 29 14:49:43 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure></p>
         
