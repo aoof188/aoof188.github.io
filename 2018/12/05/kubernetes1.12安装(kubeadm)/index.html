@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: sync | </title>
+  <title></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="kubernetes1.12安装(kubeadm)服务器：172.16.0.14 master.test.com master172.16.0.2 node01.test.com node01172.16.0.12 node02.test.com node02 三台腾讯与的服务器1234[root@master ~]# cat /etc/redhat-release CentOS Linux re">
+<meta property="og:type" content="article">
 <meta property="og:title">
-<meta property="og:url" content="http://yoursite.com/tags/sync/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/12/05/kubernetes1.12安装(kubeadm)/index.html">
 <meta property="og:site_name">
+<meta property="og:description" content="kubernetes1.12安装(kubeadm)服务器：172.16.0.14 master.test.com master172.16.0.2 node01.test.com node01172.16.0.12 node02.test.com node02 三台腾讯与的服务器1234[root@master ~]# cat /etc/redhat-release CentOS Linux re">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-05T05:19:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title">
+<meta name="twitter:description" content="kubernetes1.12安装(kubeadm)服务器：172.16.0.14 master.test.com master172.16.0.2 node01.test.com node01172.16.0.12 node02.test.com node02 三台腾讯与的服务器1234[root@master ~]# cat /etc/redhat-release CentOS Linux re">
   
     <link rel="alternative" href="/atom.xml" title="" type="application/atom+xml">
   
@@ -160,68 +164,176 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-kubernetes1.12安装(kubeadm)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="kubernetes1-12安装-kubeadm"><a href="#kubernetes1-12安装-kubeadm" class="headerlink" title="kubernetes1.12安装(kubeadm)"></a>kubernetes1.12安装(kubeadm)</h1><p>服务器：<br>172.16.0.14 master.test.com master<br>172.16.0.2 node01.test.com node01<br>172.16.0.12 node02.test.com node02</p>
+<p>三台腾讯与的服务器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# cat /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.6.1810 (Core) </span><br><span class="line">[root@master ~]# uname -a</span><br><span class="line">Linux master 3.10.0-957.1.3.el7.x86_64 #1 SMP Thu Nov 29 14:49:43 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure></p>
+<p>三台服务器之间添加host解析，建好ssh免密通信</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>配置docker源</span><br><span class="line">[root@master ~]# yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line"></span><br><span class="line">[root@master ~]# yum makecache fast</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>查看docker版本</span><br><span class="line">[root@master ~]# yum list docker-ce.x86_64  --showduplicates |sort -r</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>安装docker-ce-18.06</span><br><span class="line">[root@master ~]# yum install -y --setopt=obsoletes=0   docker-ce-18.06.1.ce-3.el7</span><br><span class="line"></span><br><span class="line">[root@master ~]# systemctl start docker &amp;&amp; systemctl enable docker</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>配置阿里kubernetes源</span><br><span class="line">[root@master ~]# cat  &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">[root@master ~]# yum makecache fast</span><br><span class="line"></span><br><span class="line">[root@master ~]# yum install kubeadm-1.12.3 kubelet-1.12.3 kubectl-1.12.3</span><br><span class="line"></span><br><span class="line">[root@master ~]# systemctl enable kubelet</span><br></pre></td></tr></table></figure>
+<p>kubeadm初始化是需要去pull镜像，但由于国内不可描述的原因我们只能另寻他法了<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# kubeadm config images list</span><br><span class="line">I1205 11:02:13.472095    3005 version.go:236] remote version is much newer: v1.13.0; falling back to: stable-1.12</span><br><span class="line">k8s.gcr.io/kube-apiserver:v1.12.3</span><br><span class="line">k8s.gcr.io/kube-controller-manager:v1.12.3</span><br><span class="line">k8s.gcr.io/kube-scheduler:v1.12.3</span><br><span class="line">k8s.gcr.io/kube-proxy:v1.12.3</span><br><span class="line">k8s.gcr.io/pause:3.1</span><br><span class="line">k8s.gcr.io/etcd:3.2.24</span><br><span class="line">k8s.gcr.io/coredns:1.2.2</span><br></pre></td></tr></table></figure></p>
+<p>我们通过 docker.io/mirrorgooglecontainers 中转一下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# kubeadm config images list |sed -e 's/^/docker pull /g' -e 's#k8s.gcr.io#docker.io/mirrorgooglecontainers#g' |sh -x</span><br><span class="line">[root@master ~]# docker images |grep mirrorgooglecontainers |awk '&#123;print "docker tag ",$1":"$2,$1":"$2&#125;' |sed -e 's#mirrorgooglecontainers#k8s.gcr.io#2' |sh -x</span><br><span class="line">[root@master ~]# docker images |grep mirrorgooglecontainers |awk '&#123;print "docker rmi ", $1":"$2&#125;' |sh -x</span><br><span class="line">[root@master ~]# docker pull coredns/coredns:1.2.2</span><br><span class="line">[root@master ~]# docker tag coredns/coredns:1.2.2 k8s.gcr.io/coredns:1.2.2</span><br><span class="line">[root@master ~]# docker rmi coredns/coredns:1.2.2</span><br><span class="line"></span><br><span class="line">[root@master ~]# docker images</span><br><span class="line">REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">k8s.gcr.io/kube-proxy                v1.12.3             ab97fa69b926        8 days ago          96.5MB</span><br><span class="line">k8s.gcr.io/kube-apiserver            v1.12.3             6b54f7bebd72        8 days ago          194MB</span><br><span class="line">k8s.gcr.io/kube-controller-manager   v1.12.3             c79022eb8bc9        8 days ago          164MB</span><br><span class="line">k8s.gcr.io/kube-scheduler            v1.12.3             5e75513787b1        8 days ago          58.3MB</span><br><span class="line">k8s.gcr.io/etcd                      3.2.24              3cab8e1b9802        2 months ago        220MB</span><br><span class="line">k8s.gcr.io/coredns                   1.2.2               367cdc8433a4        3 months ago        39.2MB</span><br><span class="line">quay.io/coreos/flannel               v0.10.0-amd64       f0fad859c909        10 months ago       44.6MB</span><br><span class="line">k8s.gcr.io/pause                     3.1                 da86e6ba6ca1        11 months ago       742kB</span><br></pre></td></tr></table></figure>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init   --kubernetes-version=v1.12.0   --pod-network-cidr=10.244.0.0/16 </span><br><span class="line">[init] using Kubernetes version: v1.12.3</span><br><span class="line">[preflight] running pre-flight checks</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">[addons] Applied essential addon: CoreDNS</span><br><span class="line">[addons] Applied essential addon: kube-proxy</span><br><span class="line"></span><br><span class="line">Your Kubernetes master has initialized successfully!</span><br><span class="line"></span><br><span class="line">To start using your cluster, you need to run the following as a regular user:</span><br><span class="line"></span><br><span class="line">  mkdir -p $HOME/.kube</span><br><span class="line">  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span><br><span class="line">  sudo chown $(id -u):$(id -g) $HOME/.kube/config</span><br><span class="line"></span><br><span class="line">You should now deploy a pod network to the cluster.</span><br><span class="line">Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:</span><br><span class="line">  https://kubernetes.io/docs/concepts/cluster-administration/addons/</span><br><span class="line"></span><br><span class="line">You can now join any number of machines by running the following on each node</span><br><span class="line">as root:</span><br><span class="line"></span><br><span class="line">  kubeadm join 172.16.0.14:6443 --token up7mb0.w3fyt07rhznaoct1 --discovery-token-ca-cert-hash sha256:38aa22b9ae6955ad2ab18e1719392162d34e8954d062234c2159a045b38667e7</span><br></pre></td></tr></table></figure>
+<h2 id="node01节点加入集群"><a href="#node01节点加入集群" class="headerlink" title="node01节点加入集群"></a>node01节点加入集群</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>参照master配置好yum源并安装</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>配置docker源</span><br><span class="line">[root@node01 ~]# yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>配置阿里kubernetes源</span><br><span class="line">[root@node01 ~]# cat /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line"></span><br><span class="line">[root@node01 ~]# yum makecache fast</span><br><span class="line">[root@node01 ~]# yum install docker-ce-18.06.1.ce-3.el7 kubeadm-1.12.3 kubelet-1.12.3 kubectl-1.12.3</span><br><span class="line"><span class="meta">#</span>node上不使用kubectl的话可以不安装</span><br><span class="line"></span><br><span class="line">[root@node01 ~]# systemctl enable docker &amp;&amp; systemctl start docker</span><br><span class="line">[root@node01 ~]# systemctl enable kubelet</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>由于国内不可描述的原因node节点上也需要提前下载好镜像</span><br><span class="line">[root@node01 ~]# kubeadm config images list |sed -e 's/^/docker pull /g' -e 's#k8s.gcr.io#docker.io/mirrorgooglecontainers#g' |sh -x</span><br><span class="line">[root@node01 ~]# docker images |grep mirrorgooglecontainers |awk '&#123;print "docker tag ",$1":"$2,$1":"$2&#125;' |sed -e 's#mirrorgooglecontainers#k8s.gcr.io#2' |sh -x</span><br><span class="line">[root@node01 ~]# docker images |grep mirrorgooglecontainers |awk '&#123;print "docker rmi ", $1":"$2&#125;' |sh -x</span><br><span class="line">[root@node01 ~]# docker pull coredns/coredns:1.2.2</span><br><span class="line">[root@node01 ~]# docker tag coredns/coredns:1.2.2 k8s.gcr.io/coredns:1.2.2</span><br><span class="line">[root@node01 ~]# docker rmi coredns/coredns:1.2.2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>加入集群</span><br><span class="line">[root@node01 ~]# kubeadm join 172.16.0.14:6443 --token up7mb0.w3fyt07rhznaoct1 --discovery-token-ca-cert-hash sha256:38aa22b9ae6955ad2ab18e1719392162d34e8954d062234c2159a045b38667e7</span><br></pre></td></tr></table></figure>
+<p><strong>node02按照node01步骤操作</strong></p>
+<h2 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>以上步骤一切正常就perfect</span><br><span class="line">[root@master ~]# kubectl get cs</span><br><span class="line">NAME                 STATUS    MESSAGE              ERROR</span><br><span class="line">controller-manager   Healthy   ok                   </span><br><span class="line">scheduler            Healthy   ok                   </span><br><span class="line">etcd-0               Healthy   &#123;"health": "true"&#125;   </span><br><span class="line">[root@master ~]# kubectl get nodes</span><br><span class="line">NAME     STATUS   ROLES    AGE   VERSION</span><br><span class="line">master   Ready    master   11h   v1.12.3</span><br><span class="line">node01   Ready    &lt;none&gt;   62m   v1.12.3</span><br><span class="line">node02   Ready    &lt;none&gt;   81m   v1.12.3</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>每个节点上会运行相应的pod和docker</span><br><span class="line">[root@master ~]# kubectl get pods -n kube-system -o wide</span><br><span class="line">NAME                             READY   STATUS             RESTARTS   AGE   IP            NODE     NOMINATED NODE</span><br><span class="line">coredns-576cbf47c7-jj4mg         1/1     Running            0          11h   10.244.0.2    master   &lt;none&gt;</span><br><span class="line">coredns-576cbf47c7-tghtx         1/1     Running            0          11h   10.244.0.3    master   &lt;none&gt;</span><br><span class="line">etcd-master                      1/1     Running            0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-apiserver-master            1/1     Running            0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-controller-manager-master   1/1     Running            0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-flannel-ds-amd64-k4xcm      1/1     Running            0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-flannel-ds-amd64-p7jgl      1/1     Running            0          83m   172.16.0.12   node02   &lt;none&gt;</span><br><span class="line">kube-flannel-ds-amd64-v5pf9      0/1     CrashLoopBackOff   15         63m   172.16.0.2    node01   &lt;none&gt;</span><br><span class="line">kube-proxy-88vln                 1/1     Running            0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-proxy-lz8fq                 1/1     Running            0          83m   172.16.0.12   node02   &lt;none&gt;</span><br><span class="line">kube-proxy-q5tcj                 0/1     ImagePullBackOff   0          63m   172.16.0.2    node01   &lt;none&gt;</span><br><span class="line">kube-scheduler-master            1/1     Running            0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>kube-apiserver， kube-scheduler， kube-controller，etcd-master运行在master上，kube-flannel kube-proxy在三个节点上均有运行</span><br></pre></td></tr></table></figure>
+<h3 id="删除node节点"><a href="#删除node节点" class="headerlink" title="删除node节点"></a>删除node节点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# kubectl get node</span><br><span class="line">NAME     STATUS   ROLES    AGE   VERSION</span><br><span class="line">master   Ready    master   11h   v1.12.3</span><br><span class="line">node01   Ready    &lt;none&gt;   73m   v1.12.3</span><br><span class="line">node02   Ready    &lt;none&gt;   92m   v1.12.3</span><br><span class="line"></span><br><span class="line">[root@master ~]# kubectl  delete node node01</span><br><span class="line"></span><br><span class="line">[root@master ~]# kubectl get node</span><br><span class="line">NAME     STATUS   ROLES    AGE   VERSION</span><br><span class="line">master   Ready    master   11h   v1.12.3</span><br><span class="line">node02   Ready    &lt;none&gt;   94m   v1.12.3</span><br><span class="line">[root@master ~]# </span><br><span class="line">[root@master ~]# </span><br><span class="line">[root@master ~]# kubectl get pods -n kube-system -o wide</span><br><span class="line">NAME                             READY   STATUS             RESTARTS   AGE   IP            NODE     NOMINATED NODE</span><br><span class="line">coredns-576cbf47c7-jj4mg         1/1     Running            0          11h   10.244.0.2    master   &lt;none&gt;</span><br><span class="line">coredns-576cbf47c7-tghtx         1/1     Running            0          11h   10.244.0.3    master   &lt;none&gt;</span><br><span class="line">etcd-master                      1/1     Running            0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-apiserver-master            1/1     Running            0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-controller-manager-master   1/1     Running            0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-flannel-ds-amd64-k4xcm      1/1     Running            0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-flannel-ds-amd64-p7jgl      1/1     Running            0          94m   172.16.0.12   node02   &lt;none&gt;</span><br><span class="line">kube-flannel-ds-amd64-v5pf9      0/1     CrashLoopBackOff   17         75m   172.16.0.2    node01   &lt;none&gt;</span><br><span class="line">kube-proxy-88vln                 1/1     Running            0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-proxy-lz8fq                 1/1     Running            0          94m   172.16.0.12   node02   &lt;none&gt;</span><br><span class="line">kube-proxy-q5tcj                 0/1     ImagePullBackOff   0          75m   172.16.0.2    node01   &lt;none&gt;</span><br><span class="line">kube-scheduler-master            1/1     Running            0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line"></span><br><span class="line">[root@master ~]# kubectl get pods -n kube-system -o wide</span><br><span class="line">NAME                             READY   STATUS    RESTARTS   AGE   IP            NODE     NOMINATED NODE</span><br><span class="line">coredns-576cbf47c7-jj4mg         1/1     Running   0          11h   10.244.0.2    master   &lt;none&gt;</span><br><span class="line">coredns-576cbf47c7-tghtx         1/1     Running   0          11h   10.244.0.3    master   &lt;none&gt;</span><br><span class="line">etcd-master                      1/1     Running   0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-apiserver-master            1/1     Running   0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-controller-manager-master   1/1     Running   0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-flannel-ds-amd64-k4xcm      1/1     Running   0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-flannel-ds-amd64-p7jgl      1/1     Running   0          95m   172.16.0.12   node02   &lt;none&gt;</span><br><span class="line">kube-proxy-88vln                 1/1     Running   0          11h   172.16.0.14   master   &lt;none&gt;</span><br><span class="line">kube-proxy-lz8fq                 1/1     Running   0          95m   172.16.0.12   node02   &lt;none&gt;</span><br><span class="line">kube-scheduler-master            1/1     Running   0          11h   172.16.0.14   master   &lt;none&gt;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>祝老板晚上约炮成功<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://image.aoof188.cn/blog/180426/m5lf1l8bfj.png?imageslim">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://image.aoof188.cn/blog/180426/aid0K9db2A.png?imageslim">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/27/Centos7配置lsync同步/" class="archive-article-date">
-  	<time datetime="2018-04-27T13:57:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/27/Centos7配置lsync同步/">Centos7配置lsync同步</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sync</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
-          
-
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/12/05/kubernetes1.12安装(kubeadm)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/12/05/基于Kubernetes构建企业容器云/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="kubernetes1.12安装(kubeadm)" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytzJtAsj",
+        conf: "prod_0669f23104fa000da505958568d50680"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -255,9 +367,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
